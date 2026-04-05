@@ -1,12 +1,9 @@
 'use client'
 
-// Tabbed feature showcase. Replaces the 4 alternating rows with fake browser
-// chrome. One component, one interaction pattern, 4 tabs. The visual on the
-// right is an empty/tactical placeholder card (per Adam: empty cards are fine
-// until real demo screenshots exist) — but the placeholder is different per
-// tab (stat grid, schema tree, timeline, data table row) so the right side
-// doesn't feel like 4 copies of the same empty box.
+// Tabbed feature showcase — each tab swaps in a real LoanOS product
+// screenshot captured from the test account at loanos.vercel.app.
 
+import Image from 'next/image'
 import { useState } from 'react'
 
 type Tab = {
@@ -15,7 +12,7 @@ type Tab = {
   title: string
   body: string
   bullets: string[]
-  placeholder: 'pipeline' | 'email' | 'realtor' | 'postclose'
+  image: { src: string; alt: string; width: number; height: number }
 }
 
 const TABS: Tab[] = [
@@ -25,7 +22,12 @@ const TABS: Tab[] = [
     title: 'Every loan, every stage, every next action — in one view.',
     body: 'Drag-and-drop pipeline with automatic Arive sync, milestone-based automations, and AI-surfaced next actions. The status board that replaces your spreadsheet.',
     bullets: ['Live Arive sync', 'Milestone automations', 'AI next-action queue'],
-    placeholder: 'pipeline',
+    image: {
+      src: '/screenshots/pipeline.png',
+      alt: 'LoanOS Loans in Process pipeline — status chips, lock expiry flags, commission column',
+      width: 1918,
+      height: 923,
+    },
   },
   {
     key: 'comms',
@@ -33,7 +35,12 @@ const TABS: Tab[] = [
     title: 'Pre-approvals, CDs, and updates — written for you.',
     body: 'Milestone emails drafted by AI in your voice, sent automatically when the file hits the stage. You review and send. Or let it go on autopilot.',
     bullets: ['Pre-approval templates', 'CD + CTC emails', 'Branded scenario PDFs'],
-    placeholder: 'email',
+    image: {
+      src: '/screenshots/loan-detail.png',
+      alt: 'LoanOS loan detail — milestone timeline, parties, key dates, documents, activity',
+      width: 1915,
+      height: 922,
+    },
   },
   {
     key: 'realtor',
@@ -41,7 +48,12 @@ const TABS: Tab[] = [
     title: 'Track every referral source like they\u2019re your biggest client.',
     body: 'Automatic touchpoints after close, co-branded pre-approval letters, and a leaderboard of who\u2019s actually sending you deals. No more guessing who your top agents are.',
     bullets: ['Automatic touchpoints', 'Co-branded PAs', 'Partner leaderboard'],
-    placeholder: 'realtor',
+    image: {
+      src: '/screenshots/contact-detail.png',
+      alt: 'LoanOS contact detail — borrower profile with realtor referral source and activity feed',
+      width: 1916,
+      height: 916,
+    },
   },
   {
     key: 'postclose',
@@ -49,7 +61,12 @@ const TABS: Tab[] = [
     title: 'Your clients don\u2019t forget you. Because LoanOS doesn\u2019t.',
     body: 'Birthday touches, closing anniversary notes, refi-watch alerts when rates drop. Every past client, every year, forever. Zero manual effort.',
     bullets: ['Birthday + anniversary', 'Refi-watch alerts', 'Review requests'],
-    placeholder: 'postclose',
+    image: {
+      src: '/screenshots/dashboard.png',
+      alt: 'LoanOS dashboard — commission, pipeline, recent marketing automations, active pipeline',
+      width: 1873,
+      height: 674,
+    },
   },
 ]
 
@@ -126,126 +143,18 @@ export default function FeatureTabs() {
           </ul>
         </div>
 
-        {/* Per-tab placeholder — tactical, empty, different per tab */}
-        <div className="relative">
-          <TabPlaceholder kind={current.placeholder} />
+        {/* Real product screenshot */}
+        <div className="relative overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-lg shadow-black/20">
+          <Image
+            key={current.key}
+            src={current.image.src}
+            alt={current.image.alt}
+            width={current.image.width}
+            height={current.image.height}
+            className="h-auto w-full"
+            priority={current.key === TABS[0].key}
+          />
         </div>
-      </div>
-    </div>
-  )
-}
-
-function TabPlaceholder({ kind }: { kind: Tab['placeholder'] }) {
-  const frame =
-    'rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 font-mono text-[11px]'
-
-  if (kind === 'pipeline') {
-    const rows = [
-      { name: 'JENKINS · 4471',   stage: 'CTC',       next: 'wire request',   tone: 'text-[var(--green)]' },
-      { name: 'PATEL · 4468',     stage: 'DISCL',     next: 'send LE',        tone: 'text-primary' },
-      { name: 'RAMOS · 4465',     stage: 'UW',        next: 'cond reply',     tone: 'text-primary' },
-      { name: 'OKAFOR · 4459',    stage: 'APP',       next: 'docs requested', tone: 'text-muted-foreground' },
-    ]
-    return (
-      <div className={frame}>
-        <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-          <span>pipeline · live</span>
-          <span className="text-[var(--green)]">● arive synced</span>
-        </div>
-        <div className="space-y-1">
-          {rows.map((r) => (
-            <div
-              key={r.name}
-              className="flex items-center justify-between border-b border-[var(--border)]/60 py-2 last:border-b-0"
-            >
-              <span className="text-foreground">{r.name}</span>
-              <span className={`${r.tone} text-[10px] uppercase`}>{r.stage}</span>
-              <span className="text-muted-foreground">{r.next}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  if (kind === 'email') {
-    return (
-      <div className={frame}>
-        <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-          <span>draft · pre-approval</span>
-          <span className="text-primary">● ai composed</span>
-        </div>
-        <div className="space-y-1 text-[10px]">
-          <div className="flex gap-2"><span className="w-10 text-muted-foreground">to</span><span className="text-foreground">jenkins@email.com</span></div>
-          <div className="flex gap-2"><span className="w-10 text-muted-foreground">subj</span><span className="text-foreground">You&apos;re pre-approved — next steps</span></div>
-          <div className="my-2 h-px bg-[var(--border)]" />
-        </div>
-        <p className="text-[11px] leading-relaxed text-foreground/90">
-          Hey Michelle — good news. You&apos;re officially pre-approved up to $485k.
-          I pulled together three scenarios so you can see how the monthly moves
-          with different down payments...
-        </p>
-        <div className="mt-3 flex items-center justify-end gap-2 text-[9px] uppercase tracking-wider">
-          <span className="rounded border border-[var(--border)] px-2 py-0.5 text-muted-foreground">edit</span>
-          <span className="rounded bg-primary px-2 py-0.5 text-primary-foreground">send</span>
-        </div>
-      </div>
-    )
-  }
-
-  if (kind === 'realtor') {
-    const agents = [
-      { name: 'M. RIVERA',   deals: 9, bar: 100 },
-      { name: 'S. CHEN',     deals: 6, bar: 66 },
-      { name: 'J. GARCIA',   deals: 4, bar: 44 },
-      { name: 'D. OKONKWO',  deals: 2, bar: 22 },
-    ]
-    return (
-      <div className={frame}>
-        <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-          <span>top agents · ytd</span>
-          <span className="text-primary">● leaderboard</span>
-        </div>
-        <div className="space-y-2.5">
-          {agents.map((a) => (
-            <div key={a.name}>
-              <div className="mb-1 flex items-center justify-between">
-                <span className="text-foreground">{a.name}</span>
-                <span className="text-muted-foreground">{a.deals} deals</span>
-              </div>
-              <div className="h-1 w-full bg-[var(--border)]">
-                <div className="h-full bg-primary" style={{ width: `${a.bar}%` }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  // postclose
-  const events = [
-    { date: 'MAR 15', tag: 'BDAY',   text: 'Jenkins family · auto-send' },
-    { date: 'MAR 18', tag: 'REFI',   text: '4 clients crossed threshold' },
-    { date: 'MAR 22', tag: 'ANNIV',  text: 'Patel closing · 1 year' },
-    { date: 'MAR 30', tag: 'REVIEW', text: 'Ramos · ask for referral' },
-  ]
-  return (
-    <div className={frame}>
-      <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
-        <span>post-close queue</span>
-        <span className="text-primary">● auto</span>
-      </div>
-      <div className="relative">
-        <div className="absolute left-[38px] top-1 bottom-1 w-px bg-[var(--border)]" />
-        {events.map((e) => (
-          <div key={e.date} className="relative flex items-center gap-3 py-2">
-            <span className="w-11 text-[9px] text-muted-foreground">{e.date}</span>
-            <span className="relative z-10 h-1.5 w-1.5 rounded-full bg-primary ring-2 ring-[var(--surface)]" />
-            <span className="inline-block w-14 text-[9px] uppercase text-primary">{e.tag}</span>
-            <span className="text-foreground">{e.text}</span>
-          </div>
-        ))}
       </div>
     </div>
   )
