@@ -2,10 +2,13 @@
 // wrap-around text row. Pure CSS animation (see .marquee-track in globals.css).
 // Track is duplicated so the translateX(-50%) creates a seamless loop.
 
+// Only LIVE integrations per LOANOS_SYSTEM_KNOWLEDGE_BASE.md Feature Reality Map.
+// Jungo is a Salesforce overlay — listed once as "Salesforce / Jungo".
+// Mortgage Coach is REPLACED by the scenario tool, not integrated.
+// Gmail / Twilio / ShareFile / Encompass / GCal / Calendly removed (not built or schema-only).
 const INTEGRATIONS = [
-  'Arive', 'Encompass', 'Outlook', 'Gmail', 'Google Calendar',
-  'Calendly', 'Twilio', 'Mortgage Coach', 'Mailchimp', 'Zapier',
-  'Salesforce', 'Jungo', 'ShareFile', 'Supabase', 'n8n',
+  'Arive', 'Outlook', 'Salesforce / Jungo', 'Mailchimp',
+  'Zapier', 'n8n', 'Publer', 'Claude', 'Supabase',
 ]
 
 function MarqueeRow() {

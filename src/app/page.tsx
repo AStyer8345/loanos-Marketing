@@ -4,6 +4,9 @@ import HeroTerminal from '@/components/HeroTerminal'
 import BentoFeatures from '@/components/BentoFeatures'
 import ProblemQuotes from '@/components/ProblemQuotes'
 import FeatureTabs from '@/components/FeatureTabs'
+import ChatShowcase from '@/components/ChatShowcase'
+import ScenariosShowcase from '@/components/ScenariosShowcase'
+import SocialShowcase from '@/components/SocialShowcase'
 import IntegrationsMarquee from '@/components/IntegrationsMarquee'
 import FAQAccordion from '@/components/FAQAccordion'
 import FinalCTA from '@/components/FinalCTA'
@@ -161,6 +164,63 @@ export default function HomePage() {
             </div>
 
             <FeatureTabs />
+          </div>
+        </section>
+
+        {/* ══ CHAT ══════════════════════════════════════════════════════════ */}
+        <section id="chat" className="border-b border-[var(--border)] bg-[var(--surface2)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                  An assistant <span className="text-primary">trained for LOs.</span>
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  Not a generic chatbot. It knows your lender panel, your non-QM products, your guidelines — and it calculates self-employment income without Googling.
+                </p>
+              </div>
+              <div className="hidden max-w-xs text-sm text-muted-foreground md:block">
+                Built on Claude, wired into your real data. Add contacts, draft emails, run a borrower scenario — all from one conversation.
+              </div>
+            </div>
+
+            <ChatShowcase />
+          </div>
+        </section>
+
+        {/* ══ SCENARIOS ═════════════════════════════════════════════════════ */}
+        <section id="scenarios" className="border-b border-[var(--border)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 max-w-2xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Kill the PDF.
+                <br />
+                <span className="text-primary">Ship a link.</span>
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Build a purchase or refi scenario once. Send your borrower a shareable link they can pull up on a phone — branded, interactive, no login. Every page you ship is a brand asset Google can find.
+              </p>
+            </div>
+
+            <ScenariosShowcase />
+          </div>
+        </section>
+
+        {/* ══ SOCIAL ════════════════════════════════════════════════════════ */}
+        <section id="social" className="border-b border-[var(--border)] bg-[var(--surface2)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 max-w-2xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Writes in your voice.
+                <br />
+                <span className="text-primary">Learns from every edit.</span>
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Build a carousel from a single prompt, or teach it your brand voice once and let it draft posts you just approve. Every edit you make trains it for next time.
+              </p>
+            </div>
+
+            <SocialShowcase />
           </div>
         </section>
 

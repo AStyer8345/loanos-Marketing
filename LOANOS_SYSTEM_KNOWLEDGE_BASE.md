@@ -1,7 +1,9 @@
 # LoanOS System Knowledge Base
 > Master reference for all AI agents, research sessions, and build sessions.
-> Updated: 2026-03-25
+> Updated: 2026-04-05 (marketing verification pass — features audited against loanos-clone source)
 > Source of truth: CONTEXT.md (session history) + this file (architectural constants)
+
+> **Marketing rule:** Any claim on loanos-marketing must match a ✅ LIVE row in the "Feature Reality Map" below. Aspirational features (🟡 SCHEMA-ONLY / 🔴 NOT BUILT) are NOT marketable until promoted.
 
 ---
 
@@ -11,6 +13,117 @@ LoanOS is a mortgage intelligence platform built by Adam Styer (Senior LO, Austi
 - **Phase 1–2**: Personal production tool replacing Jungo CRM, Mortgage Coach, scattered Claude workflows
 - **Phase 3–4**: Licensed SaaS for other mortgage loan officers (multi-tenant)
 - **Not** a consumer product. Built for LOs who originate 10–30 loans/month.
+
+---
+
+## Feature Reality Map (verified 2026-04-05)
+
+Every marketing claim must map to a ✅ row. Verified by direct source inspection in `/Users/adamstyer/Documents/loanos-clone`.
+
+### ✅ LIVE — Marketable
+
+#### Scenario Builder + Public Share Pages
+- **Code:** `src/app/dashboard/scenarios/`, `src/app/share/[token]/page.tsx`
+- **Schema:** `supabase/migrations/018_scenarios.sql` — `scenarios` table with `share_token` column
+- **What it does:** LO builds a purchase or refi scenario (multiple loan options, down payment variations, buy-down costs). Outputs break-even analysis, equity curves, total-cost-of-ownership side-by-side.
+- **Share flow:** Each scenario generates a token URL (`/share/<token>`) — no login required for borrower or realtor. Renders with `OptionCardsGrid`.
+- **SEO / SEM angle:** Public share pages are indexable and brandable. Every scenario shared is a crawlable page tied to Adam's org slug — an asset that accumulates instead of dying in an email.
+- **Positioning:** Mortgage Coach replacement. Faster, cheaper, built inline with the pipeline, no separate login.
+
+#### Social Media Dashboard
+- **Code:** `src/app/dashboard/marketing/_components/SocialTab.tsx`, `SocialDraftDetail.tsx`
+- **Publisher:** Publer multi-platform (Instagram, LinkedIn, Facebook, Google Business Profile)
+- **Approval queue:** Draft → review → approve → schedule. `status` field on drafts.
+- **AI generation:** Claude writes drafts against the org's voice guide.
+- **Marketable claim:** "One inbox for every platform. Review, edit, approve, schedule."
+
+#### Voice Guide
+- **Code:** `src/app/dashboard/marketing/_components/VoiceGuideEditor.tsx`
+- **Storage:** Single markdown text field per org in `social_settings`
+- **How it's used:** Injected into the system prompt for every AI draft (social posts, emails, scenarios descriptions).
+- **Marketable claim:** "Teach it how you talk once. It writes in your voice from then on."
+
+#### Learning Loop (edit capture → in-context learning)
+- **Code:** `src/app/api/chat/social/route.ts` (lines 126–135 load `voice_feedback`), `SocialDraftDetail.tsx` (lines 27–35 capture edits)
+- **How it works:** When Adam edits an AI-generated post, the system records a diff note like `[DATE] EDITED "[title]": Original started with: "..." — Changed to start with: "..."` into a `voice_feedback` text field. That field is prepended to the system prompt on the next generation.
+- **NOT:** Fine-tuning. NOT model retraining. Pure in-context prompt injection — but it works, and it compounds.
+- **Marketable claim:** "It remembers every edit. The more you use it, the less you have to." (honest — do not imply ML training)
+
+#### AI Chatbot — LO-Specialized Assistant
+- **Code:** `src/app/api/chat/route.ts` (main mortgage chat), `src/app/api/chat/social/route.ts` (social chat)
+- **Frontend:** Multi-round tool use (up to 4 rounds per message), markdown rendering via `react-markdown`
+- **Two live tools:**
+  1. `query_lender_database` — structured Supabase lookups against the `lenders` table. "Who's our AE at PennyMac?" "Which lenders do DSCR 1-4?"
+  2. `query_mortgage_knowledge_base` — queries NotebookLM notebook `3489e177` (12 product guide sources). "What are Deephaven's HELOC FICO minimums?"
+- **Conversational capabilities** (no tool needed — Claude does this in-context): self-employment income calculation (SAM 1084, Schedule C, K-1 methods), general underwriting Q&A (DTI, reserves, LTV, guideline lookups), drafting email text, suggesting contact fields from natural language
+- **System prompt:** Built dynamically from `system_prompts` table per org; includes voice guide, org context, loan officer role framing
+- **Marketable claim:** "Trained for loan officers. It knows non-QM guidelines, calculates self-employment income, and knows every lender you work with — because you taught it."
+
+#### Lender Knowledge System (feeds the chatbot)
+- **Code:** `/dashboard/lenders` list + `/dashboard/lenders/[id]` detail, `LenderCard.tsx`, `LenderFilters.tsx`
+- **Data layer:** `lenders` table in Supabase — 13+ lenders loaded as of 2026-04-04
+  - **Loaded lenders:** Deephaven, Ameris Bank, Champions Funding, FCM TPO, NewRez, PennyMac, Mega Capital Funding, Plaza Home Mortgage, Huntington Bank, The Loan Store, plus more
+  - Each lender row: AE contacts (name, phone, email), channel (Broker/Correspondent), NMLS, specialty products array, guideline notes (timestamped entries), fees
+  - **Products indexed:** Digital HELOC, DSCR 1-4, DSCR 5-9, Non-QM A/A+, Bank Statement, Asset Depletion, ITIN, Jumbo Non-QM, 1099 Only, P&L, Foreign National, Physician Loans, HomeStyle Renovation, etc.
+- **NotebookLM deep knowledge base:** Notebook `3489e177`, 12 text sources with full product guides (Deephaven Product Guide, Champions Funding Matrix, Ameris Non-QM Guide, NewRez SmartSelf, NewRez RezPool Plus, PennyMac Non-QM A/A+, Mega Capital MVP, Huntington Doctors Only, Plaza HomeStyle, The Loan Store TLS Flex, FCM TPO)
+- **Daily auto-ingest pipeline:** n8n workflow `hHXpKUirhnBCnQTO` "LoanOS — Lender Email Ingest", **active**
+  - Daily 8am CT trigger → scans Outlook inbox (last 24h) → filters by 14 lender domains + guideline keywords → Claude extracts structured JSON → Supabase lender record auto-updates (replaces AE contacts on change, appends new products, appends timestamped guideline notes) → activity_log entry
+- **Marketable claim:** "Your broker panel, live. Every morning at 8am, LoanOS reads your lender emails and rewrites your knowledge base. You stop tracking guideline changes — it does it for you."
+
+#### Security Architecture (13 verified claims)
+- **RLS on every org-scoped table** — 15 tables filtered by `get_user_org_id()`
+- **Zero null org rows** in any production table (migration 053 enforced NOT NULL on 8 tables)
+- **SSR-aware auth** via `@supabase/ssr` — no token leakage in client bundles
+- **Service role key scoped** — only used server-side, every query explicitly filtered by `organization_id`
+- **Signed URLs for document access** — no public bucket exposure
+- **Audit log is append-only** — `activity_log` has no UPDATE/DELETE policies
+- **No secrets in source** — all credentials via Vercel env vars
+- **AES-256-GCM encryption** for stored Arive API credentials (per-org)
+- **Three-layer webhook verification** for `/api/arive-webhook`: (1) unique path slug per org, (2) shared secret header, (3) payload identity check
+- **5 security headers** set on every response (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection)
+- **Rate limiting** on public API routes
+- **SQL injection prevention** via Supabase parameterized client — no raw SQL
+- **No shared data between orgs** — architecturally impossible via RLS
+- **Known gaps (do NOT market):** No CSP, no HSTS, no CSRF tokens, no IP allowlists
+
+### 🟡 SCHEMA ONLY — Aspirational, DO NOT MARKET
+
+#### Drip Campaigns
+- **Schema:** `supabase/migrations/071_drip_campaigns_tables.sql` exists
+- **Missing:** No API routes, no UI, no scheduler, no sender
+- **Verdict:** Cut from marketing until real. No "smart drips" copy.
+
+#### Encompass / Google Calendar / Calendly integrations
+- **Status:** Schema references or placeholder columns only, no working sync
+- **Verdict:** Remove from integrations marquee or mark "coming soon"
+
+### 🔴 NOT BUILT — Do not reference
+
+- **AI voice chat (STT/TTS):** Text chat is live, voice I/O is not. Remove any "voice" references from marketing.
+- **Integrations that exist in marketing marquee but have no code:** Gmail, Twilio, Jungo (concept folded into Salesforce), ShareFile, Mortgage Coach
+- **Chat mass-update tool:** Conversational bulk operations ("mark all my 2023 loans as closed") not built — needs confirmation UX
+- **PDF lender guideline upload:** No upload flow. NotebookLM ingestion is manual during Claude Code sessions; daily email ingest (n8n) handles incremental updates
+
+### Integration Truth Table
+
+| Integration | Status | Notes |
+|---|---|---|
+| Arive | ✅ LIVE | Webhook via Zapier middleware, 3-layer auth, AES-256-GCM stored credentials |
+| Outlook | ✅ LIVE | n8n sync for drafts (Zapier hook creates drafts) |
+| Salesforce (Jungo) | ✅ LIVE (limited) | Admin CSV import only — not realtime. Jungo IS a Salesforce overlay, so list it once as "Salesforce / Jungo import." |
+| Supabase | ✅ LIVE | Core DB — always on |
+| n8n | ✅ LIVE | Automation layer |
+| Mailchimp | ✅ LIVE | One-way send for rate updates + newsletters |
+| Zapier | ✅ LIVE | Middleware for Arive + Outlook draft creation |
+| Publer | ✅ LIVE | Social posting (not usually shown as integration — it's part of the dashboard) |
+| Claude API | ✅ LIVE | AI layer |
+| Encompass | 🟡 Schema only | Remove or "coming soon" |
+| Google Calendar | 🟡 Schema only | Remove or "coming soon" |
+| Calendly | 🟡 Schema only | Remove or "coming soon" |
+| Gmail | 🔴 Not built | Remove from marquee |
+| Twilio | 🔴 Not built | Remove from marquee |
+| ShareFile | 🔴 Not built | Remove from marquee |
+| Mortgage Coach | 🔴 Not built | Scenario builder REPLACES it — don't list as integration |
 
 ---
 
