@@ -1,3 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --radius: 0.5rem;
+}
+
+/* ── Light mode (default) ───────────────────────────────── */
+:root, .light {
+  --bg:       #e8eaef;
+  --surface:  #f0f1f5;
+  --surface2: #e4e6ec;
+
+  --border:   #c8ccd6;
+
+  --text:     #05060b;
+  --muted:    #010309;
+  --fg:       #05060b;
+
+  --gold:     #a4851e;
+  --green:    #16a34a;
+  --red:      #dc2626;
+
+  --accent:        var(--gold);
+  --accent-light:  hsla(210, 70%, 50%, 0.08);
+  --accent-border: hsla(210, 70%, 50%, 0.3);
+
+  --background: #e8eaef;
+  --foreground: #05060b;
+  --card: #f0f1f5;
+  --card-foreground: #05060b;
+  --popover: #f0f1f5;
+  --popover-foreground: #05060b;
+  --primary: #a4851e;
+  --primary-foreground: #ffffff;
+  --secondary: #e4e6ec;
+  --secondary-foreground: #05060b;
+  --muted-bg: #e4e6ec;
+  --muted-foreground: #010309;
+  --accent-bg: #e4e6ec;
+  --accent-foreground: #05060b;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --ring: #a4851e;
+  --input: #c8ccd6;
+
+  --sc-bg:       #e8eaef;
+  --sc-card:     #f0f1f5;
+  --sc-card-alt: #e8eaef;
+  --sc-border:   #c8ccd6;
+  --sc-accent:   #3b6fcc;
+  --sc-accent-dim: rgba(59, 111, 204, 0.08);
+  --sc-gold:     #3b6fcc;
+  --sc-gold-dim: rgba(59, 111, 204, 0.08);
+  --sc-blue:     #3b6fcc;
+  --sc-blue-dim: rgba(59, 111, 204, 0.08);
+  --sc-green:    #16a34a;
+  --sc-red:      #dc2626;
+  --sc-text:     #05060b;
+  --sc-muted:    rgba(5, 6, 11, 0.45);
+}
+
+/* ── Dark mode ──────────────────────────────────────────── */
+.dark {
+  --bg:       #0c0e14;
+  --surface:  #171c28;
+  --surface2: #222838;
+
+  --border:   #2f3546;
+
+  --text:     #eaecf0;
+  --muted:    #9ba3b5;
+  --fg:       #eaecf0;
+
+  --gold:     #C9A84C;
+  --green:    #4ADE80;
+  --red:      #DC2626;
+
+  --accent:        var(--gold);
+  --accent-light:  hsla(210, 70%, 60%, 0.12);
+  --accent-border: hsla(210, 70%, 60%, 0.5);
+
+  --background: #0c0e14;
+  --foreground: #eaecf0;
+  --card: #1c2235;
+  --card-foreground: #eaecf0;
+  --popover: #1c2235;
+  --popover-foreground: #eaecf0;
+  --primary: #C9A84C;
+  --primary-foreground: #0c0e14;
+  --secondary: #222838;
+  --secondary-foreground: #eaecf0;
+  --muted-bg: #222838;
+  --muted-foreground: #9ba3b5;
+  --accent-bg: #222838;
+  --accent-foreground: #eaecf0;
+  --destructive: #DC2626;
+  --destructive-foreground: #eaecf0;
+  --ring: #C9A84C;
+  --input: #2f3546;
+
+  --sc-bg:       #0c1220;
+  --sc-card:     #111a2e;
+  --sc-card-alt: #162035;
+  --sc-border:   #1e2d4a;
+  --sc-accent:   #5b8def;
+  --sc-accent-dim: rgba(91, 141, 239, 0.10);
+  --sc-gold:     #5b8def;
+  --sc-gold-dim: rgba(91, 141, 239, 0.10);
+  --sc-blue:     #5b8def;
+  --sc-blue-dim: rgba(91, 141, 239, 0.10);
+  --sc-green:    #4ade80;
+  --sc-red:      #f87171;
+  --sc-text:     #e0e6f0;
+  --sc-muted:    rgba(224, 230, 240, 0.5);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Card glow on hover */
+.card-glow {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.06), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+:root .card-glow:hover, .light .card-glow:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(164, 133, 30, 0.2), 0 0 16px rgba(164, 133, 30, 0.08);
+}
+
+/* Table styling */
+.lo-table {
+  width: 100%;
+  font-size: 0.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.lo-table thead th {
+  padding: 0.625rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.lo-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+.lo-table tbody tr:hover {
+  background: rgba(201, 168, 76, 0.04);
+}
+.lo-table tbody td {
+  padding: 0.625rem 1rem;
+}
+
+/* Command center / tactical action button */
+.action-btn:hover {
+  background: var(--gold);
+  color: #0c0e14;
+}
+
+/* Chat markdown — remove trailing margin on last element */
+.chat-markdown > :last-child {
+  margin-bottom: 0 !important;
+}
