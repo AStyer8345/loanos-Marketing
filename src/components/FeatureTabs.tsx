@@ -152,6 +152,7 @@ export default function FeatureTabs() {
             width={current.image.width}
             height={current.image.height}
             className="h-auto w-full"
+            unoptimized
             priority={current.key === TABS[0].key}
           />
         </div>

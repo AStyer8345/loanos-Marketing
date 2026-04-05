@@ -249,13 +249,19 @@ export default function HomePage() {
                 </h2>
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
-                    I&apos;m Adam Styer — independent mortgage broker in Austin, Texas. For years I ran my pipeline out of Arive, Outlook, a spreadsheet, and whatever was written on the sticky notes next to my monitor.
+                    I&apos;m Adam Styer — independent mortgage broker in Austin, Texas. I close loans every week. I also wanted my life back.
                   </p>
                   <p>
-                    I paid an admin $5k/month to hold it together. Then I replaced her with automation — and kept closing loans. That automation stack became LoanOS.
+                    The money in this business comes from meeting people, being on the phone, showing up. Everything else — updating a spreadsheet, writing the same milestone email for the hundredth time, chasing a doc, posting to social — that&apos;s overhead. I sat down and put a dollar-per-hour number on every task I did in a week. Some were $25-an-hour tasks. Most were $10. A lot were honestly $5.
+                  </p>
+                  <p>
+                    I wasn&apos;t going to hire another $5k/month admin to do $5/hour work. So I built the system that does it for me — and kept closing loans while I built it. That system became LoanOS.
+                  </p>
+                  <p>
+                    The other reason: I hated the canned stuff. Generic drip campaigns. Template emails that sound like they came from a content farm. Borrowers can smell it. So LoanOS doesn&apos;t ship with canned anything. It learns how I actually talk, watches every edit I make, and drafts the next message in the voice I would&apos;ve used anyway. Not a template library. A system that sounds like me.
                   </p>
                   <p className="border-l-2 border-primary pl-4 font-semibold text-foreground">
-                    This isn&apos;t software built by a tech founder who interviewed some LOs. It&apos;s software built by an LO who still closes loans. Every feature started as something I needed at 10pm on a Tuesday.
+                    This isn&apos;t software built by a tech founder who interviewed some LOs. It&apos;s software built by an LO who still closes loans — to get the $5-an-hour tasks off the desk so the $500-an-hour ones can happen.
                   </p>
                 </div>
               </div>

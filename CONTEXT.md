@@ -30,6 +30,32 @@ Files intentionally NOT copied (app-specific, would confuse marketing context):
 - `tasks/`, `audits/`, `supabase/` (product migrations)
 - Product CONTEXT.md / CHANGELOG.md (this repo has its own)
 
+## Founder Narrative — Origin Story (canonical, per Adam 2026-04-05)
+
+This is the "why" behind LoanOS. Every piece of marketing copy should lean into this and nothing should contradict it.
+
+**The motivation is time, not tech.** Adam built LoanOS so he could spend more hours on the only activities that actually produce income — meeting people, networking, being on the phone. Everything else is overhead.
+
+**The audit.** Adam sat down and assigned a dollar-per-hour value to every task in a typical week:
+- Some were **$25/hr** tasks (structuring a loan, talking to a realtor, presenting options to a borrower)
+- Most were **$10/hr** tasks (drafting a milestone email, updating a spreadsheet, logging activity)
+- A lot were honestly **$5/hr** tasks (copy-pasting a status update, cleaning contact data, posting to social, chasing a stray doc)
+
+**The decision.** Hiring another $5k/month admin to handle $5/hour work was economically stupid. So instead of hiring, he built the system that does it for him — while still closing loans. That system became LoanOS.
+
+**The second motivation: no canned anything.** Adam hated generic drip campaigns and template emails. They sound like a content farm and borrowers smell it. LoanOS intentionally does NOT ship with a library of canned templates. Instead it:
+- Learns Adam's voice from his actual sent emails and approved edits
+- Captures every rewrite, every deleted cliché, every tone change
+- Feeds those edits back into the next draft as in-context learning (not fine-tuning)
+- Drafts the next message the way Adam would have written it anyway
+
+**The positioning sentence:**
+> "Get the $5-an-hour tasks off your desk so the $500-an-hour ones can happen."
+
+**Where this lives on the site:** Homepage About section (`src/app/page.tsx`, section `#about`) — rewritten 2026-04-05 to carry this narrative. Do not dilute it in future copy passes.
+
+---
+
 ## Locked Decisions (2026-04-05, from Adam)
 
 1. **Launch stance:** Pre-launch. Target public launch: **May 1, 2026**.

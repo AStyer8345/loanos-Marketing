@@ -4,6 +4,20 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-05 — Real screenshots + founder narrative rewrite
+
+### Added
+- 8 real LoanOS product screenshots in `public/screenshots/` (pipeline, loan-detail, contact-detail, dashboard, social-editor, social-preview, status-chips, marketing-activity) — extracted from a prior session and committed as canonical product imagery.
+- Founder origin story to `CONTEXT.md` as a new "Founder Narrative" section, canonical and quoted in Adam's own framing: $25/$10/$5-an-hour task audit, the decision to build instead of hire another $5k/month admin, and the "no canned anything / learns my voice" thesis. Future copy passes must not dilute this.
+
+### Changed
+- `src/components/FeatureTabs.tsx` — replaced the 4 synthetic tactical placeholders with real product screenshots wired through `next/image`. Deleted the ~110-line `TabPlaceholder` function. Added `unoptimized` prop so Next.js does not re-encode the PNGs to lossy WebP — small UI text in the screenshots was rendering blurry at default `q=75`.
+- `src/components/SocialShowcase.tsx` — replaced the synthetic `CarouselBuilder` + `ApprovalQueue` mocks with real `social-editor.png` and `social-preview.png` figures, each with a mono caption. Stripped ~210 lines of dead mock code (CAROUSEL_SLIDES, QUEUE_ITEMS, PLATFORM_COLORS, STATUS_STYLES, ApprovalQueue). Same `unoptimized` fidelity fix.
+- `src/app/page.tsx` — About section rewritten to carry the founder narrative. Old version focused on "I paid an admin $5k/month"; new version leads with the time-on-money-making-activities motivation, the per-task dollar-per-hour audit, and the "no canned drip campaigns, it sounds like me" thesis. New closing sentence: *"Get the $5-an-hour tasks off your desk so the $500-an-hour ones can happen."*
+
+### Why
+Two problems in one pass. (1) The 4 real screenshots were in the repo but visibly blurry — Next.js's default image pipeline re-encodes PNG to WebP at `q=75`, which smears small UI text in tight table rows and email drafts. `unoptimized` serves raw bytes from `/public` so every status chip and email body is crisp. (2) The About section was generic founder boilerplate ("I needed this"). Adam's actual motivation is much sharper and more specific: he audited his own tasks by dollar value and decided to build a system that eats the low-value ones without hiring — while also refusing to ship canned templates because borrowers can smell a content farm. That's the pitch. It belongs on the page.
+
 ## 2026-04-05 — Homepage v2: De-AI design pass
 
 De-uniformed the homepage. Audit flagged 7 repeating AI-tell patterns (mono-gold eyebrows on 9 sections, 5 fake-browser chromes, 4 identical numbered cards, `→`/`▸` arrow bullets, detail/+ rotate FAQ, "left-text/right-placeholder" rhythm). Replaced each with a distinct component inspired by 21st.dev patterns but rebuilt locally in the LoanOS tactical aesthetic.

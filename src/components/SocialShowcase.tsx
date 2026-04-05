@@ -23,6 +23,7 @@ export default function SocialShowcase() {
             width={1916}
             height={910}
             className="h-auto w-full"
+            unoptimized
           />
           <figcaption className="border-t border-[var(--border)] bg-[var(--surface)] px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/80">
             Editor · voice guide + chat-to-edit
@@ -35,6 +36,7 @@ export default function SocialShowcase() {
             width={1917}
             height={934}
             className="h-auto w-full"
+            unoptimized
           />
           <figcaption className="border-t border-[var(--border)] bg-[var(--surface)] px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/80">
             Preview · FB / IG / LI before you publish
