@@ -4,6 +4,30 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-05 — Homepage v2: De-AI design pass
+
+De-uniformed the homepage. Audit flagged 7 repeating AI-tell patterns (mono-gold eyebrows on 9 sections, 5 fake-browser chromes, 4 identical numbered cards, `→`/`▸` arrow bullets, detail/+ rotate FAQ, "left-text/right-placeholder" rhythm). Replaced each with a distinct component inspired by 21st.dev patterns but rebuilt locally in the LoanOS tactical aesthetic.
+
+### Added
+- `src/components/HeroTerminal.tsx` — animated log stream replacing hero's fake browser chrome. Pure CSS keyframe animation (no client JS), 6 log lines staggered via `animationDelay`, footer stat strip (Loans live / Actions today / Auto-drafted), blinking caret prompt.
+- `src/components/BentoFeatures.tsx` — asymmetric 5-card bento grid replacing the 4 identical "01–04" value prop cards. Hero card with CSS bar chart (1,000+ loans shipped trend), `$5k/mo` big-stat card, identity quote card with gold tint, stack-replacement card with strike-through chips, compounding card with gradient day-1→month-6 bar.
+- `src/components/ProblemQuotes.tsx` — 3 large numeric callouts (`5 tabs`, `6 months`, `$5k/month`) with short headline + body, vertical dividers. Replaces the 3 identical `→` arrow columns.
+- `src/components/FeatureTabs.tsx` — client component with sticky left tab rail + content panel. Replaces the 4 alternating fake-browser-chrome solution rows with a single tabbed showcase. Each of the 4 tabs renders a *different* tactical placeholder (pipeline table, email draft, realtor leaderboard bars, post-close timeline) — no more copy-paste browser chrome.
+- `src/components/IntegrationsMarquee.tsx` — infinite CSS marquee strip (15 integrations, 40s loop, pause-on-hover, edge fade masks). Replaces static wrap-around text row.
+- `src/components/FAQAccordion.tsx` — client component with smooth height transition using the `grid-template-rows: 0fr→1fr` trick. Chevron icon instead of the `+ rotate-45` cliché. Numbered left rail.
+- `src/components/FinalCTA.tsx` — grid-pattern background with radial fade mask, primary/10 radial glow, status pill, 2-line headline. Replaces flat `primary/5` wash.
+
+### Changed
+- `src/app/globals.css` — added marketing utilities: `.bg-grid-pattern`, `.bg-grid-pattern-sm`, `.mask-radial-fade`, `@keyframes marquee-scroll`, `@keyframes log-in`, `@keyframes caret-blink`, `.accordion-content` grid-rows transition.
+- `src/app/page.tsx` — rewired homepage to use all 7 new components. Stripped the repeating `font-mono text-[11px] uppercase` eyebrow label from 5 of 9 sections (kept only on hero badge + integrations strip + footer) to break the visible pattern. Headlines bumped to `md:text-5xl` with two-line treatment and gold accent phrase. Replaced `▸` bullet list on waitlist benefits with circle-check icons. About callout moved from plain bold to border-left gold accent.
+- `.gitignore` — added `.claude/` and `tsconfig.tsbuildinfo`.
+- `.claude/launch.json` — fixed PATH export so `preview_start` can find nvm-installed node.
+
+### Why
+Prior homepage was structurally solid but visually uniform — every section used the same card shell, same eyebrow label, same bullet ornament. Low variance is the tell that software made it. This pass introduces genuine section-to-section variety: a bento, a stat grid, a tabbed showcase, an accordion, a marquee, a grid-pattern CTA. The component vocabulary is now 7 distinct patterns instead of 1 reused 9 times.
+
+Build passing, deployed via `git push`.
+
 ## 2026-04-05 — Full Homepage Build (Pre-Launch v1)
 
 ### Added

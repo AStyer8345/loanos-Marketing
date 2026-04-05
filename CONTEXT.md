@@ -6,7 +6,7 @@
 
 - **Repo created:** 2026-03-26 (Next.js 14 scaffold + Supabase dep)
 - **Deployed:** Vercel (auto-deploy on `main`)
-- **Status:** Structural landing page only. Zero visual design applied (globals.css was empty until 2026-04-05).
+- **Status:** Homepage v2 shipped 2026-04-05 (de-AI design pass — 7 distinct components replacing uniform sections).
 - **Waitlist API:** `src/app/api/waitlist/route.ts` — functional, writes to Supabase
 
 ## What Exists
@@ -46,7 +46,16 @@ Files intentionally NOT copied (app-specific, would confuse marketing context):
 
 ## Shipped (2026-04-05)
 
-- Full homepage v1 in LoanOS aesthetic — TopNav (Codex), WaitlistForm (Claude), page.tsx with 12 sections (Claude), FAQ content (subagent)
+- **Homepage v1** — TopNav (Codex), WaitlistForm (Claude), page.tsx with 12 sections (Claude), FAQ content (subagent)
+- **Homepage v2 (de-AI pass)** — 7 new components replacing repeating patterns:
+  - `HeroTerminal` (animated log stream, replaces fake browser chrome)
+  - `BentoFeatures` (asymmetric 5-card grid with bar chart, replaces 4 identical numbered cards)
+  - `ProblemQuotes` (3 big-number callouts, replaces `→` arrow columns)
+  - `FeatureTabs` (client tabbed showcase, replaces 4 alternating fake-browser rows — each tab has a distinct tactical placeholder)
+  - `IntegrationsMarquee` (infinite CSS scroll, replaces plain text row)
+  - `FAQAccordion` (client accordion with smooth height animation, replaces `<details>`+ rotate)
+  - `FinalCTA` (grid-pattern bg with radial fade, replaces flat primary/5 wash)
+- Stripped repeating mono-gold eyebrow labels from 5 of 9 sections to break the visible pattern
 - Build passing, deployed via `git push`
 
 ## Next Steps

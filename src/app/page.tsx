@@ -1,13 +1,18 @@
 import TopNav from '@/components/TopNav'
 import WaitlistForm from '@/components/WaitlistForm'
+import HeroTerminal from '@/components/HeroTerminal'
+import BentoFeatures from '@/components/BentoFeatures'
+import ProblemQuotes from '@/components/ProblemQuotes'
+import FeatureTabs from '@/components/FeatureTabs'
+import IntegrationsMarquee from '@/components/IntegrationsMarquee'
+import FAQAccordion from '@/components/FAQAccordion'
+import FinalCTA from '@/components/FinalCTA'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// LoanOS Marketing Homepage
-// Pre-launch. May 1, 2026 target. CTAs: Join waitlist + Book demo.
-// Aesthetic: mirrors loanos-clone app — gold accents, IBM Plex, card-glow, dense.
+// LoanOS Marketing Homepage — v2 (de-AI'd)
+// Replaces 7 uniform sections with distinct components. See CHANGELOG 2026-04-05.
 // ─────────────────────────────────────────────────────────────────────────────
 
-// FAQ content
 const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: 'Does LoanOS integrate with Arive?',
@@ -43,31 +48,28 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
   },
 ]
 
-const INTEGRATIONS = [
-  'Arive', 'Encompass', 'Outlook', 'Gmail', 'Google Calendar',
-  'Calendly', 'Twilio', 'Mortgage Coach', 'Mailchimp', 'Zapier',
-]
-
 export default function HomePage() {
   return (
     <>
       <TopNav />
 
       <main className="pt-14">
-        {/* ═══════════════════════════════════════════════════════════════════════
-            HERO
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ HERO ═══════════════════════════════════════════════════════════ */}
         <section className="relative overflow-hidden border-b border-[var(--border)]">
-          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              {/* Left: copy */}
+          {/* Ambient grid backdrop */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-grid-pattern-sm mask-radial-fade opacity-40"
+          />
+          <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+            <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center">
               <div>
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" />
                   Pre-launch · May 1, 2026
                 </div>
 
-                <h1 className="mb-6 font-sans text-4xl font-bold leading-[1.05] tracking-tight text-foreground md:text-6xl">
+                <h1 className="mb-6 font-sans text-4xl font-bold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
                   Built by LOs.
                   <br />
                   <span className="text-primary">For LOs.</span>
@@ -80,7 +82,7 @@ export default function HomePage() {
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#waitlist"
-                    className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
                   >
                     Join the waitlist
                   </a>
@@ -99,254 +101,91 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Right: product screenshot placeholder */}
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 shadow-lg card-glow">
-                  {/* Fake browser chrome */}
-                  <div className="mb-4 flex items-center gap-1.5 border-b border-[var(--border)] pb-3">
-                    <div className="h-2.5 w-2.5 rounded-full bg-[var(--red)]/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-primary/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-[var(--green)]/60" />
-                    <div className="ml-3 font-mono text-[10px] text-muted-foreground">loanos.app/dashboard</div>
-                  </div>
-                  {/* Placeholder content */}
-                  <div className="flex h-full flex-col items-center justify-center text-center">
-                    <div className="mb-3 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                      Product Preview
-                    </div>
-                    <div className="mb-1 font-mono text-2xl font-bold text-primary">LoanOS</div>
-                    <div className="font-mono text-[10px] text-muted-foreground">
-                      Real screenshots at launch · May 1, 2026
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Animated terminal replaces fake browser chrome */}
+              <HeroTerminal />
             </div>
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            IDENTITY STRIP — dense bold band
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ IDENTITY STRIP ═════════════════════════════════════════════════ */}
         <section className="border-b border-[var(--border)] bg-[var(--surface2)]">
-          <div className="mx-auto max-w-6xl px-4 py-8 text-center md:px-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              Built in the field
-            </p>
-            <p className="mt-2 text-xl font-semibold text-foreground md:text-2xl">
+          <div className="mx-auto max-w-6xl px-4 py-10 text-center md:px-6">
+            <p className="text-xl font-semibold text-foreground md:text-2xl">
               Every feature in LoanOS came from a real loan —{' '}
               <span className="text-primary">not a product roadmap.</span>
             </p>
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            VALUE PROPS — 4 cards
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ BENTO (Why LoanOS) ═════════════════════════════════════════════ */}
         <section id="features" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
-            <div className="mb-12 max-w-2xl">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                Why LoanOS
-              </p>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                One system. Every loan. No more tab-hopping.
+            <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                One system. Every loan.
+                <br />
+                <span className="text-muted-foreground/70">No more tab-hopping.</span>
               </h2>
+              <div className="max-w-sm text-sm text-muted-foreground">
+                Pipeline, CRM, comms, and automation in one workspace — replacing the six tools you&apos;re paying for today.
+              </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  num: '01',
-                  title: 'Built in the field.',
-                  body: 'Every feature in LoanOS came from a real loan — not a product roadmap.',
-                },
-                {
-                  num: '02',
-                  title: 'Replaces your stack.',
-                  body: 'Arive, Outlook, Excel, sticky notes, and the six tools you\u2019re paying for that don\u2019t talk to each other — one system.',
-                },
-                {
-                  num: '03',
-                  title: 'Scales without hiring.',
-                  body: 'AI-powered automations do the work you were about to hire a processor for.',
-                },
-                {
-                  num: '04',
-                  title: 'Gets smarter the more you use it.',
-                  body: 'LoanOS learns your pipeline, your realtors, and your voice — so the longer you run it, the less you have to.',
-                },
-              ].map((prop) => (
-                <div
-                  key={prop.num}
-                  className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 card-glow"
-                >
-                  <div className="mb-4 font-mono text-xs text-primary">{prop.num}</div>
-                  <h3 className="mb-2 text-base font-bold text-foreground">{prop.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{prop.body}</p>
-                </div>
-              ))}
-            </div>
+            <BentoFeatures />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            PROBLEM — 3 columns
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ PROBLEM ════════════════════════════════════════════════════════ */}
         <section className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
-            <div className="mb-12 max-w-2xl">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                The problem
-              </p>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                Your pipeline shouldn&apos;t live in five tabs.
+            <div className="mb-14 max-w-3xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your pipeline shouldn&apos;t
+                <br />
+                live in <span className="text-primary">five tabs.</span>
               </h2>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  n: '→',
-                  h: 'Your data lives everywhere.',
-                  b: 'Loan status in Arive, contacts in Jungo, follow-ups in Outlook, reminders in your head. Nothing is connected.',
-                },
-                {
-                  n: '→',
-                  h: 'Your realtors hear from you twice a year.',
-                  b: 'You close their deal, then disappear. Six months later they send the next one to the LO who kept in touch.',
-                },
-                {
-                  n: '→',
-                  h: 'You\u2019re paying for work AI can do.',
-                  b: 'Admin hires cost $5k/month and can\u2019t scale. The manual pieces of your day are exactly what AI eats for breakfast.',
-                },
-              ].map((p, i) => (
-                <div key={i} className="border-l border-primary/40 pl-5">
-                  <div className="mb-3 font-mono text-2xl text-primary">{p.n}</div>
-                  <h3 className="mb-2 text-lg font-bold text-foreground">{p.h}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{p.b}</p>
-                </div>
-              ))}
-            </div>
+            <ProblemQuotes />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            SOLUTION — 4 feature blocks with placeholder screenshots
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ SOLUTION (FeatureTabs) ═════════════════════════════════════════ */}
         <section className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                What it does
-              </p>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                One system. Every loan. From lead to post-close.
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Every loan. From lead to{' '}
+                <span className="text-primary">post-close.</span>
               </h2>
             </div>
 
-            <div className="space-y-16">
-              {[
-                {
-                  tag: 'Pipeline',
-                  h: 'Every loan, every stage, every next action — in one view.',
-                  b: 'Drag-and-drop pipeline with automatic Arive sync, milestone-based automations, and AI-surfaced next actions. The status board that replaces your spreadsheet.',
-                  bullets: ['Live Arive sync', 'Milestone automations', 'AI next-action queue'],
-                },
-                {
-                  tag: 'Client Communication',
-                  h: 'Pre-approvals, CDs, and updates — written for you.',
-                  b: 'Milestone emails drafted by AI in your voice, sent automatically when the file hits the stage. You review and send. Or let it go on autopilot.',
-                  bullets: ['Pre-approval templates', 'CD + CTC emails', 'Branded scenario PDFs'],
-                },
-                {
-                  tag: 'Realtor Partner CRM',
-                  h: 'Track every referral source like they\u2019re your biggest client.',
-                  b: 'Automatic touchpoints after close, co-branded pre-approval letters, and a leaderboard of who\u2019s actually sending you deals. No more guessing who your top agents are.',
-                  bullets: ['Automatic touchpoints', 'Co-branded PAs', 'Partner leaderboard'],
-                },
-                {
-                  tag: 'Post-close Automation',
-                  h: 'Your clients don\u2019t forget you. Because LoanOS doesn\u2019t.',
-                  b: 'Birthday touches, closing anniversary notes, refi-watch alerts when rates drop. Every past client, every year, forever. Zero manual effort.',
-                  bullets: ['Birthday + anniversary', 'Refi-watch alerts', 'Review requests'],
-                },
-              ].map((f, i) => (
-                <div
-                  key={i}
-                  className={`grid gap-10 lg:grid-cols-2 lg:items-center ${
-                    i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
-                  }`}
-                >
-                  <div>
-                    <div className="mb-3 inline-block rounded border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
-                      {f.tag}
-                    </div>
-                    <h3 className="mb-4 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-                      {f.h}
-                    </h3>
-                    <p className="mb-5 text-base leading-relaxed text-muted-foreground">
-                      {f.b}
-                    </p>
-                    <ul className="space-y-2">
-                      {f.bullets.map((b) => (
-                        <li key={b} className="flex items-center gap-2 font-mono text-xs text-foreground">
-                          <span className="text-primary">▸</span> {b}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Placeholder screenshot */}
-                  <div className="aspect-[4/3] rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4 card-glow">
-                    <div className="mb-3 flex items-center gap-1.5 border-b border-[var(--border)] pb-2">
-                      <div className="h-2 w-2 rounded-full bg-[var(--red)]/60" />
-                      <div className="h-2 w-2 rounded-full bg-primary/60" />
-                      <div className="h-2 w-2 rounded-full bg-[var(--green)]/60" />
-                      <div className="ml-2 font-mono text-[9px] text-muted-foreground">
-                        loanos.app/{f.tag.toLowerCase().replace(/ /g, '-')}
-                      </div>
-                    </div>
-                    <div className="flex h-[calc(100%-2rem)] flex-col items-center justify-center">
-                      <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                        {f.tag} Preview
-                      </div>
-                      <div className="mt-1 font-mono text-[10px] text-muted-foreground/60">
-                        Screenshots at launch
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <FeatureTabs />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            ABOUT — founder story + headshot
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ ABOUT ══════════════════════════════════════════════════════════ */}
         <section id="about" className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-center">
-              {/* Headshot placeholder — TODO: swap src when Gemini-generated photo ready */}
-              <div className="mx-auto flex h-48 w-48 items-center justify-center rounded-full border-2 border-primary/40 bg-[var(--surface)] lg:mx-0">
-                <div className="text-center">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                    Founder photo
-                  </div>
-                  <div className="mt-1 font-mono text-[9px] text-muted-foreground/60">
-                    TODO: swap src
+              <div className="relative mx-auto lg:mx-0">
+                <div className="absolute -inset-2 rounded-full bg-primary/10 blur-xl" aria-hidden />
+                <div className="relative flex h-48 w-48 items-center justify-center rounded-full border-2 border-primary/40 bg-[var(--surface)]">
+                  <div className="text-center">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Adam Styer
+                    </div>
+                    <div className="mt-1 font-mono text-[9px] text-muted-foreground/60">
+                      Founder · LO · Austin TX
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                  Built by an LO. For LOs.
-                </p>
                 <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                  I built LoanOS because I needed it.
+                  I built LoanOS because{' '}
+                  <span className="text-primary">I needed it.</span>
                 </h2>
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
@@ -355,7 +194,7 @@ export default function HomePage() {
                   <p>
                     I paid an admin $5k/month to hold it together. Then I replaced her with automation — and kept closing loans. That automation stack became LoanOS.
                   </p>
-                  <p className="font-semibold text-foreground">
+                  <p className="border-l-2 border-primary pl-4 font-semibold text-foreground">
                     This isn&apos;t software built by a tech founder who interviewed some LOs. It&apos;s software built by an LO who still closes loans. Every feature started as something I needed at 10pm on a Tuesday.
                   </p>
                 </div>
@@ -364,53 +203,43 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            INTEGRATIONS STRIP
-            ═══════════════════════════════════════════════════════════════════════ */}
-        <section className="border-b border-[var(--border)]">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
-            <p className="mb-6 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+        {/* ══ INTEGRATIONS MARQUEE ═══════════════════════════════════════════ */}
+        <section className="border-b border-[var(--border)] bg-[var(--bg)]">
+          <div className="mx-auto max-w-6xl py-14">
+            <p className="mb-6 px-4 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:px-6">
               Works with the tools you already pay for
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-              {INTEGRATIONS.map((name) => (
-                <span
-                  key={name}
-                  className="font-mono text-sm font-semibold tracking-wide text-muted-foreground/70 transition-colors hover:text-primary"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
+            <IntegrationsMarquee />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            BETA CTA BAND — waitlist form
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ WAITLIST ═══════════════════════════════════════════════════════ */}
         <section id="waitlist" className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                  Beta access
-                </p>
-                <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                  Be one of the first LOs on LoanOS.
+                <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                  Be one of the first LOs on{' '}
+                  <span className="text-primary">LoanOS.</span>
                 </h2>
                 <p className="mb-6 text-base leading-relaxed text-muted-foreground">
                   LoanOS launches May 1, 2026. Beta spots open in waves — waitlist order decides who gets in first. Join now and we&apos;ll reach out when your spot is ready.
                 </p>
-                <ul className="space-y-2 font-mono text-xs text-foreground">
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">▸</span> Locked-in founding-member pricing
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">▸</span> Direct access to me during setup
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">▸</span> First shot at shaping the product
-                  </li>
+                <ul className="space-y-3">
+                  {[
+                    'Locked-in founding-member pricing',
+                    'Direct access to me during setup',
+                    'First shot at shaping the product',
+                  ].map((b) => (
+                    <li key={b} className="flex items-center gap-3 text-sm font-medium text-foreground">
+                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-primary/50 bg-primary/10 text-primary">
+                        <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      {b}
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -419,16 +248,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            CONTACT — pricing inquiries + demo
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ CONTACT ════════════════════════════════════════════════════════ */}
         <section id="contact" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-3xl px-4 py-20 text-center md:px-6">
-            <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-              Pricing &amp; enterprise
-            </p>
             <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Want to talk pricing or bring your brokerage on?
+              Pricing, brokerage deals,
+              <br />
+              or just curious?
             </h2>
             <p className="mb-8 text-base leading-relaxed text-muted-foreground">
               LoanOS pricing is tier-based and depends on team size and volume. Book a demo and we&apos;ll walk you through the product and send a tailored quote.
@@ -452,74 +278,26 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            FAQ
-            ═══════════════════════════════════════════════════════════════════════ */}
+        {/* ══ FAQ ════════════════════════════════════════════════════════════ */}
         <section className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-3xl px-4 py-20 md:px-6">
-            <div className="mb-10 text-center">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-primary">
-                FAQ
-              </p>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-                Questions before you join.
+            <div className="mb-10">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Questions before
+                <br />
+                <span className="text-primary">you join.</span>
               </h2>
             </div>
 
-            <div className="space-y-3">
-              {FAQ_ITEMS.map((item, i) => (
-                <details
-                  key={i}
-                  className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 card-glow"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-left font-semibold text-foreground">
-                    <span>{item.q}</span>
-                    <span className="font-mono text-primary transition-transform group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {item.a}
-                  </p>
-                </details>
-              ))}
-            </div>
+            <FAQAccordion items={FAQ_ITEMS} />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════════
-            FINAL CTA BAND
-            ═══════════════════════════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden border-b border-[var(--border)]">
-          <div className="absolute inset-0 bg-primary/5" aria-hidden />
-          <div className="relative mx-auto max-w-4xl px-4 py-24 text-center md:px-6">
-            <h2 className="mb-5 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Stop managing your pipeline in five tabs.
-            </h2>
-            <p className="mx-auto mb-8 max-w-xl text-base text-muted-foreground md:text-lg">
-              Join the LoanOS waitlist. Launching May 1, 2026.
-            </p>
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href="#waitlist"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Join the waitlist
-              </a>
-              <a
-                href="https://calendly.com/adamstyer/15minutes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md border border-[var(--border)] bg-[var(--surface)] px-8 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
-              >
-                Book a demo →
-              </a>
-            </div>
-          </div>
-        </section>
+        {/* ══ FINAL CTA ══════════════════════════════════════════════════════ */}
+        <FinalCTA />
       </main>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          FOOTER
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* ══ FOOTER ═══════════════════════════════════════════════════════════ */}
       <footer className="bg-[var(--bg)]">
         <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
