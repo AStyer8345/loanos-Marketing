@@ -14,9 +14,9 @@ import Image from 'next/image'
 export default function SocialShowcase() {
   return (
     <div>
-      {/* Two real product screenshots: editor → preview */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-lg shadow-black/20">
+      {/* Two real product screenshots stacked — editor → preview sequence */}
+      <div className="flex flex-col gap-6">
+        <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-xl shadow-black/30">
           <Image
             src="/screenshots/social-editor.png"
             alt="LoanOS social post editor — 7-slide carousel for &lsquo;5 closing cost surprises&rsquo; with voice guide, approve/publish, and chat-to-edit"
@@ -29,7 +29,7 @@ export default function SocialShowcase() {
             Editor · voice guide + chat-to-edit
           </figcaption>
         </figure>
-        <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-lg shadow-black/20">
+        <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-xl shadow-black/30">
           <Image
             src="/screenshots/social-preview.png"
             alt="LoanOS social post preview modal — Facebook/Instagram/LinkedIn tabs showing the carousel post exactly as it will publish"

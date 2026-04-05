@@ -75,7 +75,7 @@ export default function FeatureTabs() {
   const current = TABS.find((t) => t.key === active) ?? TABS[0]
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
+    <div className="grid gap-8 lg:grid-cols-[220px_1fr] lg:gap-10">
       {/* Tab rail */}
       <div
         role="tablist"
@@ -117,20 +117,19 @@ export default function FeatureTabs() {
         })}
       </div>
 
-      {/* Content panel */}
-      <div
-        role="tabpanel"
-        aria-labelledby={current.key}
-        className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-center"
-      >
-        <div>
-          <h3 className="mb-4 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            {current.title}
-          </h3>
-          <p className="mb-6 text-base leading-relaxed text-muted-foreground">
-            {current.body}
-          </p>
-          <ul className="space-y-2.5">
+      {/* Content panel — stacked so the screenshot gets the full column width */}
+      <div role="tabpanel" aria-labelledby={current.key} className="flex flex-col gap-8">
+        {/* Headline + bullets row — two columns on wide screens, stacked on mobile */}
+        <div className="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start md:gap-10">
+          <div>
+            <h3 className="mb-4 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              {current.title}
+            </h3>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              {current.body}
+            </p>
+          </div>
+          <ul className="space-y-2.5 md:pt-2">
             {current.bullets.map((b) => (
               <li
                 key={b}
@@ -143,8 +142,8 @@ export default function FeatureTabs() {
           </ul>
         </div>
 
-        {/* Real product screenshot */}
-        <div className="relative overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-lg shadow-black/20">
+        {/* Real product screenshot — full width of the content panel */}
+        <div className="relative overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-xl shadow-black/30">
           <Image
             key={current.key}
             src={current.image.src}
