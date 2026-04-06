@@ -54,6 +54,24 @@ export default function CommsMock() {
         </div>
       </div>
 
+      {/* Party actions strip */}
+      <div className="flex flex-wrap gap-2 border-b border-[var(--border)] bg-[var(--surface2)] px-4 py-2.5">
+        {[
+          { label: 'Email all parties', icon: '✉' },
+          { label: 'Text borrower', icon: '💬' },
+          { label: 'Text realtor', icon: '💬' },
+          { label: 'Email title co', icon: '✉' },
+        ].map((a) => (
+          <span
+            key={a.label}
+            className="inline-flex items-center gap-1.5 rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground"
+          >
+            <span className="text-[11px]">{a.icon}</span>
+            {a.label}
+          </span>
+        ))}
+      </div>
+
       {/* Email draft preview */}
       <div className="p-4">
         <div className="rounded-md border border-[var(--border)] bg-[var(--bg)]">

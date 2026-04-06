@@ -48,6 +48,38 @@ export default function RealtorMock() {
         </div>
       </div>
 
+      {/* Referral pipeline — who's sending deals */}
+      <div className="border-b border-[var(--border)] px-4 py-3">
+        <div className="mb-2 font-mono text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Referral Pipeline
+        </div>
+        <div className="space-y-2">
+          {[
+            { name: 'Rachel Martinez', referred: 15, closed: 12, pipeline: 3, pct: 80 },
+            { name: 'David Chen', referred: 8, closed: 5, pipeline: 2, pct: 63 },
+            { name: 'Laura Pham', referred: 6, closed: 4, pipeline: 1, pct: 67 },
+            { name: 'Mike Torres', referred: 3, closed: 2, pipeline: 0, pct: 67 },
+          ].map((r) => (
+            <div key={r.name} className="flex items-center gap-3">
+              <span className="w-28 truncate font-mono text-[10px] text-foreground">{r.name}</span>
+              <div className="flex flex-1 items-center gap-1">
+                <div className="h-1.5 flex-1 rounded-full bg-[var(--border)]">
+                  <div
+                    className="h-full rounded-full bg-primary/70"
+                    style={{ width: `${r.pct}%` }}
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3 font-mono text-[9px] text-muted-foreground">
+                <span>{r.referred} sent</span>
+                <span className="text-emerald-400">{r.closed} closed</span>
+                <span className="text-amber-400">{r.pipeline} active</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Activity feed */}
       <div>
         <div className="border-b border-[var(--border)] bg-[var(--surface2)] px-4 py-2">

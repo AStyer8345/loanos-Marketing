@@ -8,7 +8,9 @@ import FeatureTabs from '@/components/FeatureTabs'
 import ChatShowcase from '@/components/ChatShowcase'
 import ScenariosShowcase from '@/components/ScenariosShowcase'
 import SocialShowcase from '@/components/SocialShowcase'
+import BriefingShowcase from '@/components/BriefingShowcase'
 import IntegrationsMarquee from '@/components/IntegrationsMarquee'
+import SecuritySection from '@/components/SecuritySection'
 import FAQAccordion from '@/components/FAQAccordion'
 import FinalCTA from '@/components/FinalCTA'
 
@@ -189,6 +191,24 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ══ DAILY BRIEFING + VOICE GUIDE ═══════════════════════════════════ */}
+        <section id="briefing" className="border-b border-[var(--border)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 max-w-2xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your morning briefing.
+                <br />
+                <span className="text-primary">Before you touch anything.</span>
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Every morning LoanOS scans your pipeline, checks rate locks, flags stale follow-ups, and drafts the actions you&apos;d normally spend an hour on. Open your laptop and the day is already organized.
+              </p>
+            </div>
+
+            <BriefingShowcase />
+          </div>
+        </section>
+
         {/* ══ SCENARIOS ═════════════════════════════════════════════════════ */}
         <section id="scenarios" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
@@ -277,6 +297,22 @@ export default function HomePage() {
               Works with the tools you already pay for
             </p>
             <IntegrationsMarquee />
+          </div>
+        </section>
+
+        {/* ══ SECURITY ═══════════════════════════════════════════════════════ */}
+        <section id="security" className="border-b border-[var(--border)] bg-[var(--surface2)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 max-w-2xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your data stays <span className="text-primary">yours.</span>
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Borrower data, pipeline details, and lender relationships are sensitive. LoanOS is built with tenant isolation, encrypted storage, and zero AI training on your data — because trust isn&apos;t a feature, it&apos;s the foundation.
+              </p>
+            </div>
+
+            <SecuritySection />
           </div>
         </section>
 

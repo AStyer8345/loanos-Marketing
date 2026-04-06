@@ -16,16 +16,17 @@ type Row = {
   status: string
   lockExp: string
   amount: string
+  docs?: string[] // uploaded docs indicator
 }
 
 const ROWS: Row[] = [
-  { borrower: 'Jessica Thompson', address: '2847 Bee Cave Rd', status: 'CTC', lockExp: 'Apr 12', amount: '$485,000' },
-  { borrower: 'Marcus & Elena Reyes', address: '1204 S Lamar Blvd', status: 'UW Review', lockExp: 'Apr 18', amount: '$612,000' },
-  { borrower: 'David Park', address: '4501 Balcones Dr', status: 'Contract Rcvd', lockExp: '—', amount: '$389,000' },
-  { borrower: 'Sarah Mitchell', address: '912 E 6th St #304', status: 'Processing', lockExp: 'Apr 22', amount: '$275,000' },
+  { borrower: 'Jessica Thompson', address: '2847 Bee Cave Rd', status: 'CTC', lockExp: 'Apr 12', amount: '$485,000', docs: ['Contract', 'Lock', 'CD'] },
+  { borrower: 'Marcus & Elena Reyes', address: '1204 S Lamar Blvd', status: 'UW Review', lockExp: 'Apr 18', amount: '$612,000', docs: ['Contract', 'Lock'] },
+  { borrower: 'David Park', address: '4501 Balcones Dr', status: 'Contract Rcvd', lockExp: '—', amount: '$389,000', docs: ['Contract'] },
+  { borrower: 'Sarah Mitchell', address: '912 E 6th St #304', status: 'Processing', lockExp: 'Apr 22', amount: '$275,000', docs: ['Contract', 'Lock'] },
   { borrower: 'Camilla Davis', address: '3301 Steck Ave', status: 'Pre-Approval', lockExp: '—', amount: '$425,000' },
-  { borrower: 'James Okonkwo', address: '7788 McNeil Dr', status: 'Funded', lockExp: '—', amount: '$550,000' },
-  { borrower: 'Rachel Kim', address: '610 W Mary St', status: 'UW Review', lockExp: 'Apr 20', amount: '$338,000' },
+  { borrower: 'James Okonkwo', address: '7788 McNeil Dr', status: 'Funded', lockExp: '—', amount: '$550,000', docs: ['Contract', 'Lock', 'CD'] },
+  { borrower: 'Rachel Kim', address: '610 W Mary St', status: 'UW Review', lockExp: 'Apr 20', amount: '$338,000', docs: ['Contract'] },
 ]
 
 export default function PipelineMock() {
@@ -57,6 +58,7 @@ export default function PipelineMock() {
               <th className="text-left">Property</th>
               <th className="text-left">Status</th>
               <th className="text-left">Lock Exp</th>
+              <th className="text-center">Docs</th>
               <th className="text-right">Amount</th>
             </tr>
           </thead>
@@ -74,6 +76,23 @@ export default function PipelineMock() {
                 </td>
                 <td className={`whitespace-nowrap ${r.lockExp === '—' ? 'text-muted-foreground/50' : 'text-foreground'}`}>
                   {r.lockExp}
+                </td>
+                <td className="text-center">
+                  {r.docs ? (
+                    <div className="flex items-center justify-center gap-0.5">
+                      {r.docs.map((d) => (
+                        <span
+                          key={d}
+                          className="rounded bg-primary/10 px-1 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-primary"
+                          title={d}
+                        >
+                          {d === 'Contract' ? 'K' : d === 'Lock' ? 'L' : 'CD'}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-muted-foreground/30">—</span>
+                  )}
                 </td>
                 <td className="whitespace-nowrap text-right font-medium text-foreground">{r.amount}</td>
               </tr>
