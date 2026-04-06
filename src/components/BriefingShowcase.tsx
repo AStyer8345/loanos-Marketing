@@ -99,9 +99,9 @@ export default function BriefingShowcase() {
         </div>
       </div>
 
-      {/* Voice guide callout */}
-      <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-5 py-4">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      {/* Voice guide + compliance callouts */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-5 py-4">
           <div className="flex items-start gap-3">
             <svg
               aria-hidden
@@ -121,14 +121,43 @@ export default function BriefingShowcase() {
               <div className="text-sm font-semibold text-foreground">
                 Voice guide — your tone, your rules.
               </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
                 Every email, text, and social post runs through your voice guide before it ships. It knows your sentence length, your preferred sign-offs, the clichés you hate. The briefing speaks in your language, not a template&apos;s.
+              </div>
+              <div className="mt-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-primary/80">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_var(--primary)]" />
+                Emails · Texts · Social · Briefing
               </div>
             </div>
           </div>
-          <div className="flex shrink-0 items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-primary/80 md:self-center">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_var(--primary)]" />
-            Emails · Texts · Social · Briefing
+        </div>
+
+        <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/[0.04] px-5 py-4">
+          <div className="flex items-start gap-3">
+            <svg
+              aria-hidden
+              className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <div>
+              <div className="text-sm font-semibold text-foreground">
+                Compliance-trained — not an afterthought.
+              </div>
+              <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                Every draft is checked against TILA, RESPA, Reg Z, and state-level advertising rules before you see it. Trigger terms auto-flag for disclosure. NMLS and Equal Housing requirements are enforced at generation time — not after a compliance officer reviews it.
+              </div>
+              <div className="mt-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-emerald-400/80">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgb(52_211_153)]" />
+                TILA · RESPA · Reg Z · TRID · State
+              </div>
+            </div>
           </div>
         </div>
       </div>
