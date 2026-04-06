@@ -104,21 +104,21 @@ const EXCHANGES: Exchange[] = [
     ),
   },
   {
-    tag: 'draft_email_in_your_voice',
+    tag: 'revive_cold_borrower',
     badge: 'Comms',
-    prompt: 'Draft a CTC email for the Reyes file. Closing is next Thursday at Capital Title.',
+    prompt: 'David Park went cold 2 weeks ago. Draft a follow-up.',
     answer: (
       <div className="space-y-2">
         <p className="text-foreground">
-          Here&apos;s a draft in your voice:
+          Reviewed David&apos;s file notes. Last contact was Mar 22 — he asked about closing costs on 4501 Balcones and never responded. Here&apos;s a draft:
         </p>
         <div className="rounded border border-[var(--border)] bg-[var(--surface2)] px-3 py-2 text-[12px] leading-relaxed">
           <p className="italic text-muted-foreground">
-            &ldquo;Marcus and Elena — great news. Your file just got the clear to close. Everything checked out and we&apos;re set for next Thursday at Capital Title. The CD comes out tomorrow so you&apos;ll have three days to review before signing. Wire instructions come from the title company only — never from me by email.&rdquo;
+            &ldquo;Hey David — just circling back on the Balcones property. I put together the closing cost breakdown you asked about. Happy to walk through it whenever you have 10 minutes. No rush, just don&apos;t want you making a decision without the full picture.&rdquo;
           </p>
         </div>
         <p className="pt-1 text-xs text-muted-foreground/80">
-          Matched to your voice guide from 47 approved emails. Edit or send?
+          Based on his file notes + your voice guide (47 approved emails). Edit or send?
         </p>
       </div>
     ),
@@ -126,24 +126,24 @@ const EXCHANGES: Exchange[] = [
   {
     tag: 'sales_coaching',
     badge: 'Coach',
-    prompt: 'My borrower just found out their appraisal came in $30K low. They\u2019re panicking. How do I handle this call?',
+    prompt: 'Appraisal came in $30K low on the Reyes file. What\u2019s my game plan?',
     answer: (
       <div className="space-y-2">
         <p className="text-foreground">
-          Three-step framework for this call:
+          This is actually leverage for your borrowers. Here&apos;s the play:
         </p>
         <div className="space-y-1.5">
           <div className="flex items-start gap-2">
             <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/15 font-mono text-[9px] font-bold text-primary">1</span>
-            <span><span className="font-semibold text-foreground">Validate first.</span> &ldquo;I know this isn&apos;t what you wanted to hear.&rdquo; Don&apos;t lead with solutions.</span>
+            <span><span className="font-semibold text-foreground">Call the realtor first.</span> Get aligned on strategy before the borrowers hear anything. The agent needs to know the number and your recommendation before they get emotional.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/15 font-mono text-[9px] font-bold text-primary">2</span>
-            <span><span className="font-semibold text-foreground">Lay out the options.</span> Renegotiate price, bring cash to cover the gap, dispute with comps, or walk.</span>
+            <span><span className="font-semibold text-foreground">Frame it as the seller&apos;s problem.</span> If the seller doesn&apos;t adjust, buyers can walk with their EMD. Relisting means the same issue with the next buyer at the same price.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/15 font-mono text-[9px] font-bold text-primary">3</span>
-            <span><span className="font-semibold text-foreground">Give a recommendation.</span> Based on market, your best move is asking the seller to split the difference. Want me to draft the email to the realtor?</span>
+            <span><span className="font-semibold text-foreground">Then call the borrowers.</span> &ldquo;I already talked to your agent — this could be a good thing. It gives us leverage to renegotiate the price.&rdquo; Options: renegotiate, bring cash to cover the gap, dispute with comps, or walk.</span>
           </div>
         </div>
       </div>
