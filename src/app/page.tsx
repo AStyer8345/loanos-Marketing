@@ -237,7 +237,7 @@ export default function HomePage() {
                 <span className="text-primary">Learns from every edit.</span>
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Build a carousel from a single prompt, or teach it your brand voice once and let it draft posts you just approve. Every edit you make trains it for next time.
+                Reels, carousels, single-image posts, text-only posts — every format, written for each platform based on what content actually performs there. One prompt becomes 3-4 platform-specific posts. Every edit you make trains it for next time.
               </p>
             </div>
 

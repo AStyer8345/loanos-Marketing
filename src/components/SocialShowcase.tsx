@@ -1,25 +1,86 @@
-// Social showcase — two real product screenshots tell the story:
-//
-//   Left: the Carousel editor (voice_guide + 7-slide builder + chat to edit)
-//   Right: the Facebook post preview overlay — shows what the post will look
-//          like before it goes out via Publer
-//
-// Footer strip: "It remembers every edit" — the voice_feedback learning loop,
-// honestly framed as in-context learning, not ML retraining.
+// Social showcase — content format grid + real screenshots.
+// Shows the range of content types LoanOS generates, each tailored per platform.
+// Footer strip: "It remembers every edit" — the voice_feedback learning loop.
 
 import Image from 'next/image'
+
+const FORMATS = [
+  {
+    icon: '🎬',
+    label: 'Reels & Video',
+    desc: 'Phone-shot scripts written how you talk. Short sentences, real cadence, no teleprompter energy.',
+    platforms: 'IG · FB · LI',
+  },
+  {
+    icon: '📱',
+    label: 'Carousels',
+    desc: 'Your selfie on slide 1, your words on the rest. No stock images, no branded templates.',
+    platforms: 'IG · LI',
+  },
+  {
+    icon: '📸',
+    label: 'Image Posts',
+    desc: 'Real photos with strong captions. A plain photo with a real story outperforms a polished graphic every time.',
+    platforms: 'IG · FB · LI',
+  },
+  {
+    icon: '✍️',
+    label: 'Text Posts',
+    desc: 'Just your words. Short paragraphs, line breaks for pacing. These crush on LinkedIn and Facebook.',
+    platforms: 'LI · FB',
+  },
+]
 
 // ─── Main ───────────────────────────────────────────────────────────────
 
 export default function SocialShowcase() {
   return (
     <div>
-      {/* Two real product screenshots stacked — editor → preview sequence */}
-      <div className="flex flex-col gap-6">
+      {/* Content format grid */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {FORMATS.map((f) => (
+          <div
+            key={f.label}
+            className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4"
+          >
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-lg">{f.icon}</span>
+              <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground/60">
+                {f.platforms}
+              </span>
+            </div>
+            <div className="mb-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-foreground">
+              {f.label}
+            </div>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              {f.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Platform-specific callout */}
+      <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--surface2)] px-5 py-3">
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold text-foreground">Every post is rewritten for each platform.</span>{' '}
+            What works on LinkedIn doesn&apos;t work on Instagram. One piece of content becomes 3-4 platform-specific posts — each tailored to what actually performs there.
+          </p>
+          <div className="flex shrink-0 items-center gap-3 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60">
+            <span>Facebook</span>
+            <span>Instagram</span>
+            <span>LinkedIn</span>
+            <span>GBP</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Real product screenshots */}
+      <div className="mt-6 flex flex-col gap-6">
         <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-xl shadow-black/30">
           <Image
             src="/screenshots/social-editor.png"
-            alt="LoanOS social post editor — 7-slide carousel for &lsquo;5 closing cost surprises&rsquo; with voice guide, approve/publish, and chat-to-edit"
+            alt="LoanOS social post editor with voice guide, approve/publish, and chat-to-edit"
             width={1916}
             height={910}
             className="h-auto w-full"
@@ -32,7 +93,7 @@ export default function SocialShowcase() {
         <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] shadow-xl shadow-black/30">
           <Image
             src="/screenshots/social-preview.png"
-            alt="LoanOS social post preview modal — Facebook/Instagram/LinkedIn tabs showing the carousel post exactly as it will publish"
+            alt="LoanOS social post preview — Facebook/Instagram/LinkedIn tabs showing the post exactly as it will publish"
             width={1917}
             height={934}
             className="h-auto w-full"
