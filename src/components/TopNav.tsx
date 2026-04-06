@@ -1,11 +1,10 @@
-type NavKey = 'product' | 'features' | 'about' | 'contact'
+type NavKey = 'features' | 'about' | 'contact'
 
 type TopNavProps = {
   activeSection?: NavKey
 }
 
 const NAV_ITEMS: { label: string; href: string; key: NavKey }[] = [
-  { label: 'Product', href: '#features', key: 'product' },
   { label: 'Features', href: '#features', key: 'features' },
   { label: 'About', href: '#about', key: 'about' },
   { label: 'Contact', href: '#contact', key: 'contact' },

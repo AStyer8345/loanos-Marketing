@@ -69,7 +69,7 @@ export default function WaitlistForm() {
           <input
             id="wl-name"
             type="text"
-            placeholder="Adam Styer"
+            placeholder="Jane Smith"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required

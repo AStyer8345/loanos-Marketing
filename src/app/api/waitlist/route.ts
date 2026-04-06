@@ -8,7 +8,34 @@ import { createClient } from '@supabase/supabase-js'
 // 3. Inserts record into LoanOS Supabase waitlist_signups table
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Simple in-memory rate limiter — 5 requests per IP per 60 seconds
+const rateMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT = 5
+const RATE_WINDOW_MS = 60_000
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateMap.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    rateMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return false
+  }
+
+  entry.count++
+  return entry.count > RATE_LIMIT
+}
+
 export async function POST(req: NextRequest) {
+  // Rate limit by IP
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again in a minute.' },
+      { status: 429 }
+    )
+  }
+
   let body: { name?: string; email?: string }
   try {
     body = await req.json()

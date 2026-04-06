@@ -150,30 +150,30 @@ const EXCHANGES: Exchange[] = [
     ),
   },
   {
-    tag: 'mass_update_pipeline',
-    badge: 'Bulk',
-    prompt: 'Rates dropped today. Text all my realtors with active pipeline deals and let them know.',
+    tag: 'query_lender_database',
+    badge: 'Lenders',
+    prompt: 'I have a borrower with a 660 FICO, 1099 income, investment property. Who on my panel can do this?',
     answer: (
       <div className="space-y-2">
         <p className="text-foreground">
-          Found 6 realtors with active pipeline deals:
+          Two lenders on your panel fit that profile:
         </p>
         <div className="rounded border border-[var(--border)] bg-[var(--surface2)] px-3 py-2 font-mono text-[12px]">
           <div className="flex justify-between text-muted-foreground">
-            <span>Texts drafted</span>
-            <span className="text-foreground">6</span>
+            <span>Deephaven — 1099 Only</span>
+            <span className="text-foreground">Min 660 FICO</span>
           </div>
           <div className="flex justify-between text-muted-foreground">
-            <span>Active deals referenced</span>
-            <span className="text-foreground">9</span>
+            <span>Champions — Non-QM A</span>
+            <span className="text-foreground">Min 640 FICO</span>
           </div>
           <div className="mt-1 flex justify-between border-t border-[var(--border)] pt-1.5">
-            <span className="text-muted-foreground">Status</span>
-            <span className="font-semibold text-amber-400">Queued — review &amp; send</span>
+            <span className="text-muted-foreground">Best fit</span>
+            <span className="font-semibold text-primary">Champions (lower FICO floor)</span>
           </div>
         </div>
         <p className="pt-1 text-xs text-muted-foreground/80">
-          Each text is personalized with the borrower name and deal status. Preview all 6?
+          Want me to pull Champions&apos; full 1099 guidelines or draft an email to their AE?
         </p>
       </div>
     ),

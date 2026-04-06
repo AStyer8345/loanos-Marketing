@@ -18,6 +18,7 @@ type Tab = {
   body: string
   bullets: string[]
   panel: ReactNode
+  comingSoon?: boolean
 }
 
 const TABS: Tab[] = [
@@ -52,6 +53,7 @@ const TABS: Tab[] = [
     body: 'Each drip step is an AI instruction — not a canned email. It uses your voice, your pipeline data, and the borrower\u2019s actual situation to draft something you\u2019d actually send.',
     bullets: ['Ghost referral sequences', 'Past-client retention', 'Realtor relationship nurture'],
     panel: <DripMock />,
+    comingSoon: true,
   },
   {
     key: 'realtor',
@@ -112,7 +114,14 @@ export default function FeatureTabs() {
               <span className="block text-[10px] text-muted-foreground/60 lg:mb-0.5">
                 0{i + 1}
               </span>
-              <span className={isActive ? 'font-semibold' : ''}>{t.tag}</span>
+              <span className={isActive ? 'font-semibold' : ''}>
+                {t.tag}
+                {t.comingSoon && (
+                  <span className="ml-1.5 inline-block rounded border border-primary/30 bg-primary/10 px-1 py-px font-mono text-[8px] font-semibold uppercase tracking-wider text-primary align-middle">
+                    Soon
+                  </span>
+                )}
+              </span>
             </button>
           )
         })}
@@ -123,6 +132,11 @@ export default function FeatureTabs() {
         {/* Headline + bullets row */}
         <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-start lg:gap-10">
           <div>
+            {current.comingSoon && (
+              <span className="mb-3 inline-block rounded border border-primary/30 bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-primary">
+                Coming Soon
+              </span>
+            )}
             <h3 className="mb-4 text-xl font-bold tracking-tight text-foreground md:text-2xl lg:text-3xl">
               {current.title}
             </h3>

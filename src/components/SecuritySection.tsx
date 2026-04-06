@@ -35,8 +35,8 @@ const PILLARS = [
         <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
       </svg>
     ),
-    title: 'Security headers & rate limiting',
-    body: 'CSP, HSTS, and strict CORS on every response. Public endpoints are rate-limited per IP. Admin routes require verified org membership — middleware enforced, not just code-level.',
+    title: 'Middleware-enforced access',
+    body: 'Admin routes require verified org membership — checked at the middleware layer before your request touches a handler. SQL injection blocked via parameterized queries on every table.',
   },
   {
     icon: (
