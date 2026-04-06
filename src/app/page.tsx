@@ -179,11 +179,11 @@ export default function HomePage() {
                   An assistant <span className="text-primary">trained for LOs.</span>
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  Not a generic chatbot. It knows your lender panel, your non-QM products, your guidelines — and it calculates self-employment income without Googling.
+                  Not a generic chatbot. Draft emails and texts in your voice. Get coached through a tough borrower call. Run income calcs, look up guidelines, blast a rate drop to every realtor with an active deal — or ask it to build you a marketing plan for Q2. It knows your lender panel, your pipeline, and your voice.
                 </p>
               </div>
               <div className="hidden max-w-xs text-sm text-muted-foreground md:block">
-                Built on Claude, wired into your real data. Add contacts, draft emails, run a borrower scenario — all from one conversation.
+                Built on Claude, wired into your real data. Write emails, drop texts, explain situations, coach you through objections, run scenarios — all from one conversation.
               </div>
             </div>
 
