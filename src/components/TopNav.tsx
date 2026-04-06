@@ -13,7 +13,7 @@ const NAV_ITEMS: { label: string; href: string; key: NavKey }[] = [
 
 export default function TopNav({ activeSection }: TopNavProps) {
   return (
-    <header className="fixed inset-x-0 top-0 z-30 h-14 border-b border-input bg-[var(--bg)] shadow-lg shadow-black/10 dark:shadow-black/40">
+    <header className="fixed inset-x-0 top-0 z-30 h-14 overflow-hidden border-b border-input bg-[var(--bg)] shadow-lg shadow-black/10 dark:shadow-black/40">
       <div className="flex h-full items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-6">
           <a href="/" className="flex items-baseline gap-1.5">

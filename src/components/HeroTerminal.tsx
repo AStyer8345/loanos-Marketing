@@ -19,7 +19,7 @@ const TONE: Record<'ok' | 'info' | 'warn', string> = {
 
 export default function HeroTerminal() {
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       {/* Ambient glow */}
       <div
         aria-hidden

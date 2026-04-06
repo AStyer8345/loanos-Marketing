@@ -121,16 +121,16 @@ export default function FeatureTabs() {
       {/* Content panel — stacked: headline/bullets on top, mock below */}
       <div role="tabpanel" aria-labelledby={current.key} className="flex flex-col gap-8">
         {/* Headline + bullets row */}
-        <div className="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start md:gap-10">
+        <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-start lg:gap-10">
           <div>
-            <h3 className="mb-4 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <h3 className="mb-4 text-xl font-bold tracking-tight text-foreground md:text-2xl lg:text-3xl">
               {current.title}
             </h3>
             <p className="text-base leading-relaxed text-muted-foreground">
               {current.body}
             </p>
           </div>
-          <ul className="space-y-2.5 md:pt-2">
+          <ul className="space-y-2.5 lg:pt-2">
             {current.bullets.map((b) => (
               <li
                 key={b}

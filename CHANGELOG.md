@@ -4,6 +4,22 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-05 — Mobile responsive fixes + content accuracy pass
+
+### Fixed
+- Horizontal overflow on mobile (portrait and landscape) — root cause was IntegrationsMarquee `w-max` track leaking document width, plus FeatureTabs grid using `md:` breakpoints at landscape phone widths (812px). Applied layered `overflow-hidden` on html/body/main/header + individual components, `min-w-0` on flex/grid children, and bumped breakpoints from `md:` to `lg:` where needed.
+- Font scaling: all `md:text-5xl` headings now use `md:text-4xl lg:text-5xl` so landscape phones don't render desktop-sized type.
+
+### Changed
+- `ChatShowcase.tsx` — rewrote 2 inaccurate exchange cards: CTC email (wrong CD timing) replaced with cold-borrower follow-up; sales coaching (wrong appraisal framing) replaced with correct 3-step framework (call realtor first → frame as seller's problem → call borrowers with leverage).
+- `CommsMock.tsx` — replaced generic CTC email with real CD email format: Final Numbers block (cash to close, closing date, first payment, monthly P&I), Wire Instructions, Wire Fraud Warning callout, Title Company info.
+- `SocialShowcase.tsx` — added 4-card format grid (Reels & Video, Carousels, Image Posts, Text Posts) with platform badges, plus platform-specific callout strip.
+- `BriefingShowcase.tsx` — added compliance callout card (TILA · RESPA · Reg Z · TRID · State licensing tags) alongside voice guide card.
+- Supabase voice guide (`social_settings`) — added low-appraisal coaching section, expanded content format strategy to all post types, added detailed compliance guardrails.
+
+### Why
+User's wife flagged mobile horizontal scroll. Root-cause analysis found marquee overflow + wrong breakpoints. Content accuracy fixes came from Adam's direct feedback on CD timing and appraisal coaching approach — both cards now reflect how he actually works.
+
 ## 2026-04-05 — Security, daily briefing, expanded AI + mock features
 
 ### Added

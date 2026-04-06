@@ -182,7 +182,7 @@ const EXCHANGES: Exchange[] = [
 
 function ChatCard({ exchange }: { exchange: Exchange }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+    <div className="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
       {/* Tool tag header */}
       <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--surface2)] px-4 py-2.5">
         <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/80">

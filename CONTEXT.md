@@ -104,6 +104,22 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
 - **PipelineMock expanded** — document upload indicators (K/L/CD badges per row in new Docs column)
 - **RealtorMock expanded** — referral pipeline section with 4 realtors showing sent/closed/active stats + progress bars
 
+## Shipped (2026-04-05, cont'd — responsive fixes + content expansion)
+
+- **Mobile responsive overhaul** — fixed horizontal overflow on portrait and landscape phones:
+  - `globals.css`: `html { overflow-x: hidden }`, body `overflow-x: hidden; max-width: 100vw`
+  - `page.tsx`: `overflow-hidden` on `<main>`, `min-w-0` on hero text div, font scaling bumped from `md:text-5xl` → `md:text-4xl lg:text-5xl` (10 occurrences)
+  - `FeatureTabs.tsx`: content grid bumped from `md:` to `lg:` breakpoints so landscape phones don't trigger wide layout
+  - `ChatShowcase.tsx`: `min-w-0` on card container to prevent grid blowout
+  - `HeroTerminal.tsx`, `IntegrationsMarquee.tsx`, `TopNav.tsx`: added `overflow-hidden` to contain wide internal elements
+- **ChatShowcase rewritten** — 2 cards fixed per user feedback:
+  - CTC email replaced with "cold borrower follow-up" (reviews file notes, drafts personalized re-engagement)
+  - Sales coaching rewritten with correct low-appraisal framework (call realtor first → frame as seller's problem → call borrowers with leverage)
+- **CommsMock** — replaced generic CTC email with real CD email format (Final Numbers block, Wire Instructions, Wire Fraud Warning, Title Company info)
+- **SocialShowcase** — added 4-card format grid (Reels, Carousels, Image Posts, Text Posts) + platform-specific callout strip
+- **BriefingShowcase** — expanded with compliance callout card (TILA · RESPA · Reg Z · TRID · State)
+- **Voice guide updates** (Supabase `social_settings`): added low-appraisal coaching approach, expanded content format strategy to all post types, added compliance guardrails section
+
 ## Known Issues
 
 - No `.env.local` present locally — Supabase waitlist submissions will fail in dev until env vars are set

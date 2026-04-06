@@ -29,7 +29,7 @@ function MarqueeRow() {
 
 export default function IntegrationsMarquee() {
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       {/* Edge fades */}
       <div
         aria-hidden

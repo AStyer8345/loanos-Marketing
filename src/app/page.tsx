@@ -59,7 +59,7 @@ export default function HomePage() {
     <>
       <TopNav />
 
-      <main className="pt-14">
+      <main className="overflow-hidden pt-14">
         {/* ══ HERO ═══════════════════════════════════════════════════════════ */}
         <section className="relative overflow-hidden border-b border-[var(--border)]">
           {/* Ambient grid backdrop */}
@@ -67,9 +67,9 @@ export default function HomePage() {
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-grid-pattern-sm mask-radial-fade opacity-40"
           />
-          <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+          <div className="relative mx-auto max-w-6xl overflow-hidden px-4 py-20 md:px-6 md:py-28">
             <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center">
-              <div>
+              <div className="min-w-0">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-primary">
                   <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]" />
                   Pre-launch · May 1, 2026
@@ -127,7 +127,7 @@ export default function HomePage() {
         <section id="features" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 One system. Every loan.
                 <br />
                 <span className="text-muted-foreground/70">No more tab-hopping.</span>
@@ -145,7 +145,7 @@ export default function HomePage() {
         <section className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-14 max-w-3xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Your pipeline shouldn&apos;t
                 <br />
                 live in <span className="text-primary">five tabs.</span>
@@ -160,7 +160,7 @@ export default function HomePage() {
         <section className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Every loan. From lead to{' '}
                 <span className="text-primary">post-close.</span>
               </h2>
@@ -175,7 +175,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                   An assistant <span className="text-primary">trained for LOs.</span>
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -195,7 +195,7 @@ export default function HomePage() {
         <section id="briefing" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Your morning briefing.
                 <br />
                 <span className="text-primary">Before you touch anything.</span>
@@ -213,7 +213,7 @@ export default function HomePage() {
         <section id="scenarios" className="border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Kill the PDF.
                 <br />
                 <span className="text-primary">Ship a link.</span>
@@ -231,7 +231,7 @@ export default function HomePage() {
         <section id="social" className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Writes in your voice.
                 <br />
                 <span className="text-primary">Learns from every edit.</span>
@@ -304,7 +304,7 @@ export default function HomePage() {
         <section id="security" className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="mb-12 max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Your data stays <span className="text-primary">yours.</span>
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -321,7 +321,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                   Be one of the first LOs on{' '}
                   <span className="text-primary">LoanOS.</span>
                 </h2>
@@ -385,7 +385,7 @@ export default function HomePage() {
         <section className="border-b border-[var(--border)] bg-[var(--surface2)]">
           <div className="mx-auto max-w-3xl px-4 py-20 md:px-6">
             <div className="mb-10">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 Questions before
                 <br />
                 <span className="text-primary">you join.</span>
