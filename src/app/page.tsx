@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import TopNav from '@/components/TopNav'
 import WaitlistForm from '@/components/WaitlistForm'
 import HeroTerminal from '@/components/HeroTerminal'
@@ -229,16 +230,16 @@ export default function HomePage() {
           <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
             <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-center">
               <div className="relative mx-auto lg:mx-0">
-                <div className="absolute -inset-2 rounded-full bg-primary/10 blur-xl" aria-hidden />
-                <div className="relative flex h-48 w-48 items-center justify-center rounded-full border-2 border-primary/40 bg-[var(--surface)]">
-                  <div className="text-center">
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                      Adam Styer
-                    </div>
-                    <div className="mt-1 font-mono text-[9px] text-muted-foreground/60">
-                      Founder · LO · Austin TX
-                    </div>
-                  </div>
+                <div className="absolute -inset-2 rounded-2xl bg-primary/10 blur-xl" aria-hidden />
+                <div className="relative overflow-hidden rounded-2xl border-2 border-primary/40 shadow-xl shadow-black/20">
+                  <Image
+                    src="/adam-headshot.jpg"
+                    alt="Adam Styer — Founder, LoanOS"
+                    width={768}
+                    height={1024}
+                    className="h-auto w-48 object-cover"
+                    priority
+                  />
                 </div>
               </div>
 
