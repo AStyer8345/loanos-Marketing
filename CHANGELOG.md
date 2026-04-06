@@ -4,6 +4,21 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-05 — Adversarial review fixes
+
+### Fixed
+- **CRITICAL:** SecuritySection falsely claimed CSP, HSTS, strict CORS — all are "Known gaps (do NOT market)" per KB. Replaced with accurate "middleware-enforced access" + parameterized queries.
+- **CRITICAL:** Drip Campaigns tab marketed a schema-only feature (KB: "no API routes, no UI, no scheduler"). Added `comingSoon` flag to Tab type; tab rail shows "Soon" badge, content panel shows "Coming Soon" banner.
+- **CRITICAL:** 6 PII-bearing screenshots deleted from `public/screenshots/` — were web-accessible despite no component references.
+- **CRITICAL:** ChatShowcase "mass update pipeline" card marketed a feature KB marks as "not built". Replaced with lender product matching query (live feature).
+- **HIGH:** TopNav had duplicate links ("Product" and "Features" both → `#features`). Removed "Product", kept Features/About/Contact.
+- **HIGH:** Added `robots.txt` and `sitemap.xml` to `public/`.
+- **HIGH:** Waitlist API had zero abuse protection. Added in-memory rate limiter (5 req/IP/60s).
+- **MEDIUM:** WaitlistForm placeholder was "Adam Styer" — changed to "Jane Smith".
+
+### Why
+Adversarial review against LOANOS_SYSTEM_KNOWLEDGE_BASE.md Feature Reality Map caught 4 launch-blocking false claims, a PII exposure, and several polish issues. Every marketing claim now matches a ✅ LIVE row in the KB.
+
 ## 2026-04-05 — Mobile responsive fixes + content accuracy pass
 
 ### Fixed

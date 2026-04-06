@@ -120,8 +120,18 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
 - **BriefingShowcase** — expanded with compliance callout card (TILA · RESPA · Reg Z · TRID · State)
 - **Voice guide updates** (Supabase `social_settings`): added low-appraisal coaching approach, expanded content format strategy to all post types, added compliance guardrails section
 
+## Shipped (2026-04-05, cont'd — adversarial review fixes)
+
+- **False security claims removed** — SecuritySection no longer claims CSP, HSTS, or strict CORS (KB says "do NOT market" these). Replaced with accurate "middleware-enforced access" + SQL injection prevention language.
+- **Drip Campaigns marked "Coming Soon"** — FeatureTabs now shows a "Soon" badge on the Drip tab rail + "Coming Soon" badge in the content panel. KB says schema-only, no API/UI/scheduler.
+- **PII screenshots deleted** — 6 unreferenced screenshots removed from `public/screenshots/` (pipeline, loan-detail, contact-detail, dashboard, status-chips, marketing-activity). 3 still-referenced screenshots remain (social-editor, social-preview, marketing-rate-update).
+- **Mass update card replaced** — ChatShowcase now shows a lender product matching query (live feature) instead of conversational bulk operations (not built per KB).
+- **TopNav duplicate removed** — "Product" and "Features" both pointed to `#features`. Now just Features/About/Contact.
+- **robots.txt + sitemap.xml added** to `public/`.
+- **Waitlist API rate-limited** — in-memory 5 req/IP/60s to prevent bot spam.
+- **WaitlistForm placeholder** changed from "Adam Styer" to "Jane Smith".
+
 ## Known Issues
 
 - No `.env.local` present locally — Supabase waitlist submissions will fail in dev until env vars are set
 - `next.config.ts` deleted (was duplicate of `next.config.mjs`) — consolidated to `.mjs` only
-- PII-bearing screenshots still in `public/screenshots/` (pipeline.png, loan-detail.png, contact-detail.png, dashboard.png) — no longer referenced by any component but not yet deleted from repo
