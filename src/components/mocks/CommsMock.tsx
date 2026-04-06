@@ -72,7 +72,7 @@ export default function CommsMock() {
         ))}
       </div>
 
-      {/* Email draft preview */}
+      {/* CD email preview */}
       <div className="p-4">
         <div className="rounded-md border border-[var(--border)] bg-[var(--bg)]">
           {/* Email header */}
@@ -86,24 +86,50 @@ export default function CommsMock() {
               </span>
             </div>
             <div className="mt-1 text-muted-foreground">
-              Subject: <span className="text-foreground">Clear to close — here&apos;s what happens next</span>
+              Subject: <span className="text-foreground">Closing Disclosure — everything you need for Thursday</span>
             </div>
           </div>
 
           {/* Email body */}
           <div className="px-4 py-3 text-xs leading-relaxed text-muted-foreground">
-            <p>Marcus and Elena,</p>
+            <p>Hi Marcus and Elena,</p>
             <p className="mt-2">
-              Great news — your file just got the clear to close. Everything checked out with underwriting and we&apos;re ready to schedule your closing on 1204 S Lamar.
+              Great news — your Closing Disclosure is finalized. Here&apos;s everything you need to know before your closing on Thursday, April 17, 2026.
             </p>
-            <p className="mt-2">
-              Here&apos;s what happens between now and the closing table:
-            </p>
-            <ul className="mt-2 space-y-1 pl-4">
-              <li className="list-disc">Final CD comes out tomorrow — you&apos;ll have 3 days to review</li>
-              <li className="list-disc">Title company will reach out to schedule signing</li>
-              <li className="list-disc">Wire instructions come from the title company only — never from me by email</li>
-            </ul>
+
+            {/* Final numbers */}
+            <div className="mt-3 border-t border-b border-[var(--border)] py-2">
+              <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-foreground">Final Numbers</div>
+              <div className="space-y-0.5 font-mono text-[11px]">
+                <div>Cash to Close: <span className="font-semibold text-foreground">$28,415.00</span></div>
+                <div>Closing Date: <span className="font-semibold text-foreground">Thursday, April 17, 2026</span></div>
+                <div>First Payment Due: <span className="font-semibold text-foreground">June 1, 2026</span></div>
+                <div>Monthly Payment (P&amp;I): <span className="font-semibold text-foreground">$3,842.16</span></div>
+              </div>
+            </div>
+
+            {/* Wire instructions */}
+            <div className="mt-3 border-b border-[var(--border)] pb-2">
+              <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-foreground">Wire Instructions — Read This</div>
+              <p className="text-[11px]">
+                Funds must be sent via wire transfer. Wire is strongly preferred by the title company and ensures same-day funding. If wire is not possible, a cashier&apos;s check made payable to the title company is acceptable — contact us first.
+              </p>
+              {/* Wire fraud warning */}
+              <div className="mt-2 rounded border-l-2 border-amber-500 bg-amber-500/10 px-3 py-2 text-[10px]">
+                <span className="font-semibold text-amber-400">⚠ WIRE FRAUD WARNING:</span>{' '}
+                <span className="text-muted-foreground">
+                  Wire fraud is common in real estate transactions. Before sending any wire, call the title company directly to verbally confirm the instructions. Do not rely solely on emailed wire instructions — even if they appear to come from us or the title company.
+                </span>
+              </div>
+            </div>
+
+            {/* Title company info */}
+            <div className="mt-2 font-mono text-[10px]">
+              <div>Title Company: <span className="font-semibold text-foreground">Capital Title</span></div>
+              <div>Contact: <span className="text-foreground">Sarah Jensen</span></div>
+              <div>Phone: <span className="text-foreground">(512) 555-0142</span></div>
+            </div>
+
             <p className="mt-3 text-[10px] italic text-muted-foreground/60">
               Drafted by LoanOS · matches your voice from 47 approved emails
             </p>
