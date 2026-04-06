@@ -92,7 +92,20 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
 4. **Launch post-May-1 pivot:** replace "Join the waitlist" primary CTA with "Start free trial" once product is live, add `/pricing` page with tiers from research
 5. **Contact form backend:** current Contact section uses `mailto:` fallback. Post-launch, replace with `/api/contact` route + Supabase `contact_inquiries` table.
 
+## Shipped (2026-04-05, cont'd — security + briefing + AI expansion)
+
+- **SecuritySection** (`src/components/SecuritySection.tsx`) — 6 trust pillars in 3-col grid: tenant isolation, webhook auth, data export, security headers + rate limiting, no AI training, encrypted document storage. Wired into page.tsx between Integrations and Waitlist.
+- **BriefingShowcase** (`src/components/BriefingShowcase.tsx`) — Daily briefing mock with stats strip (active pipeline, locks expiring, stale follow-ups, auto-actions), 4 priority alerts (2 urgent + 2 normal), and voice guide callout explaining how all output runs through your voice guide. Wired into page.tsx between Chat and Scenarios.
+- **ChatShowcase expanded** — 3 new exchange cards added (6 total, 2×3 grid):
+  - "Draft a CTC email" — shows AI drafting in the LO's voice with voice guide attribution
+  - "Sales coaching" — appraisal came in low scenario with 3-step framework
+  - "Mass update pipeline" — "Text all my realtors with active deals" → 6 texts drafted, 9 deals referenced
+- **CommsMock expanded** — party actions strip (Email all parties, Text borrower, Text realtor, Email title co)
+- **PipelineMock expanded** — document upload indicators (K/L/CD badges per row in new Docs column)
+- **RealtorMock expanded** — referral pipeline section with 4 realtors showing sent/closed/active stats + progress bars
+
 ## Known Issues
 
 - No `.env.local` present locally — Supabase waitlist submissions will fail in dev until env vars are set
-- `next.config.ts` AND `next.config.mjs` both exist — should be consolidated to `.mjs` only
+- `next.config.ts` deleted (was duplicate of `next.config.mjs`) — consolidated to `.mjs` only
+- PII-bearing screenshots still in `public/screenshots/` (pipeline.png, loan-detail.png, contact-detail.png, dashboard.png) — no longer referenced by any component but not yet deleted from repo

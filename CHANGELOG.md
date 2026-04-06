@@ -4,6 +4,22 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-05 — Security, daily briefing, expanded AI + mock features
+
+### Added
+- `src/components/SecuritySection.tsx` — 6 security trust pillars (tenant isolation, webhook auth, data export, security headers + rate limiting, no AI training on data, encrypted document storage) in a 3-column grid with SVG icons. Placed between Integrations and Waitlist sections.
+- `src/components/BriefingShowcase.tsx` — daily briefing mock with stats strip (4 metrics), priority alerts (rate lock expiring, conditions outstanding, realtor follow-up, client birthday), and voice guide callout explaining how all output runs through the LO's voice guide.
+- 3 new ChatShowcase exchange cards: email drafting in your voice, sales coaching (low appraisal scenario), and mass pipeline update (text all realtors with active deals). Grid changed from `md:grid-cols-3` to `sm:grid-cols-2 lg:grid-cols-3` for 6-card layout.
+
+### Changed
+- `src/components/mocks/CommsMock.tsx` — added party actions strip (Email all parties, Text borrower, Text realtor, Email title co) between milestone bar and email draft.
+- `src/components/mocks/PipelineMock.tsx` — added `docs` field to rows and new Docs column showing K/L/CD badges for uploaded documents.
+- `src/components/mocks/RealtorMock.tsx` — added referral pipeline section with 4 realtors, progress bars, and sent/closed/active stats.
+- `src/app/page.tsx` — wired SecuritySection (new `#security` section) and BriefingShowcase (new `#briefing` section) into homepage layout.
+
+### Why
+User feedback: security story was missing entirely, several real product features weren't represented in mocks (party comms, doc uploads, referral pipeline stats, mass updates), and the AI assistant only showed 3 data-lookup use cases when it also handles email drafting, sales coaching, and bulk actions. This pass fills all those gaps.
+
 ## 2026-04-05 — Real screenshots + founder narrative rewrite
 
 ### Added
