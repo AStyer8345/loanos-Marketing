@@ -70,20 +70,6 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
    - **Founder photo:** use Adam's existing headshot (path TBD)
 7. **Design direction:** Mirror loanos-clone's recent redesign — fixed h-14 top nav, two-tone `Loan`+gold-`OS` logo, IBM Plex Mono logo treatment, lucide-react icons, gold-tinted active states (`bg-primary/15`), tactical/dense/terminal aesthetic. Not Stripe-airy.
 
-## Shipped (2026-04-05)
-
-- **Homepage v1** — TopNav (Codex), WaitlistForm (Claude), page.tsx with 12 sections (Claude), FAQ content (subagent)
-- **Homepage v2 (de-AI pass)** — 7 new components replacing repeating patterns:
-  - `HeroTerminal` (animated log stream, replaces fake browser chrome)
-  - `BentoFeatures` (asymmetric 5-card grid with bar chart, replaces 4 identical numbered cards)
-  - `ProblemQuotes` (3 big-number callouts, replaces `→` arrow columns)
-  - `FeatureTabs` (client tabbed showcase, replaces 4 alternating fake-browser rows — each tab has a distinct tactical placeholder)
-  - `IntegrationsMarquee` (infinite CSS scroll, replaces plain text row)
-  - `FAQAccordion` (client accordion with smooth height animation, replaces `<details>`+ rotate)
-  - `FinalCTA` (grid-pattern bg with radial fade, replaces flat primary/5 wash)
-- Stripped repeating mono-gold eyebrow labels from 5 of 9 sections to break the visible pattern
-- Build passing, deployed via `git push`
-
 ## Next Steps
 
 1. **Build demo user with synthetic data in loanos-clone** — then swap placeholder screenshots on marketing homepage for real UI
@@ -91,45 +77,6 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
 3. **First 3 real testimonials** once beta users land — enable a testimonial carousel section (structure not yet built, intentionally)
 4. **Launch post-May-1 pivot:** replace "Join the waitlist" primary CTA with "Start free trial" once product is live, add `/pricing` page with tiers from research
 5. **Contact form backend:** current Contact section uses `mailto:` fallback. Post-launch, replace with `/api/contact` route + Supabase `contact_inquiries` table.
-
-## Shipped (2026-04-05, cont'd — security + briefing + AI expansion)
-
-- **SecuritySection** (`src/components/SecuritySection.tsx`) — 6 trust pillars in 3-col grid: tenant isolation, webhook auth, data export, security headers + rate limiting, no AI training, encrypted document storage. Wired into page.tsx between Integrations and Waitlist.
-- **BriefingShowcase** (`src/components/BriefingShowcase.tsx`) — Daily briefing mock with stats strip (active pipeline, locks expiring, stale follow-ups, auto-actions), 4 priority alerts (2 urgent + 2 normal), and voice guide callout explaining how all output runs through your voice guide. Wired into page.tsx between Chat and Scenarios.
-- **ChatShowcase expanded** — 3 new exchange cards added (6 total, 2×3 grid):
-  - "Draft a CTC email" — shows AI drafting in the LO's voice with voice guide attribution
-  - "Sales coaching" — appraisal came in low scenario with 3-step framework
-  - "Mass update pipeline" — "Text all my realtors with active deals" → 6 texts drafted, 9 deals referenced
-- **CommsMock expanded** — party actions strip (Email all parties, Text borrower, Text realtor, Email title co)
-- **PipelineMock expanded** — document upload indicators (K/L/CD badges per row in new Docs column)
-- **RealtorMock expanded** — referral pipeline section with 4 realtors showing sent/closed/active stats + progress bars
-
-## Shipped (2026-04-05, cont'd — responsive fixes + content expansion)
-
-- **Mobile responsive overhaul** — fixed horizontal overflow on portrait and landscape phones:
-  - `globals.css`: `html { overflow-x: hidden }`, body `overflow-x: hidden; max-width: 100vw`
-  - `page.tsx`: `overflow-hidden` on `<main>`, `min-w-0` on hero text div, font scaling bumped from `md:text-5xl` → `md:text-4xl lg:text-5xl` (10 occurrences)
-  - `FeatureTabs.tsx`: content grid bumped from `md:` to `lg:` breakpoints so landscape phones don't trigger wide layout
-  - `ChatShowcase.tsx`: `min-w-0` on card container to prevent grid blowout
-  - `HeroTerminal.tsx`, `IntegrationsMarquee.tsx`, `TopNav.tsx`: added `overflow-hidden` to contain wide internal elements
-- **ChatShowcase rewritten** — 2 cards fixed per user feedback:
-  - CTC email replaced with "cold borrower follow-up" (reviews file notes, drafts personalized re-engagement)
-  - Sales coaching rewritten with correct low-appraisal framework (call realtor first → frame as seller's problem → call borrowers with leverage)
-- **CommsMock** — replaced generic CTC email with real CD email format (Final Numbers block, Wire Instructions, Wire Fraud Warning, Title Company info)
-- **SocialShowcase** — added 4-card format grid (Reels, Carousels, Image Posts, Text Posts) + platform-specific callout strip
-- **BriefingShowcase** — expanded with compliance callout card (TILA · RESPA · Reg Z · TRID · State)
-- **Voice guide updates** (Supabase `social_settings`): added low-appraisal coaching approach, expanded content format strategy to all post types, added compliance guardrails section
-
-## Shipped (2026-04-05, cont'd — adversarial review fixes)
-
-- **False security claims removed** — SecuritySection no longer claims CSP, HSTS, or strict CORS (KB says "do NOT market" these). Replaced with accurate "middleware-enforced access" + SQL injection prevention language.
-- **Drip Campaigns marked "Coming Soon"** — FeatureTabs now shows a "Soon" badge on the Drip tab rail + "Coming Soon" badge in the content panel. KB says schema-only, no API/UI/scheduler.
-- **PII screenshots deleted** — 6 unreferenced screenshots removed from `public/screenshots/` (pipeline, loan-detail, contact-detail, dashboard, status-chips, marketing-activity). 3 still-referenced screenshots remain (social-editor, social-preview, marketing-rate-update).
-- **Mass update card replaced** — ChatShowcase now shows a lender product matching query (live feature) instead of conversational bulk operations (not built per KB).
-- **TopNav duplicate removed** — "Product" and "Features" both pointed to `#features`. Now just Features/About/Contact.
-- **robots.txt + sitemap.xml added** to `public/`.
-- **Waitlist API rate-limited** — in-memory 5 req/IP/60s to prevent bot spam.
-- **WaitlistForm placeholder** changed from "Adam Styer" to "Jane Smith".
 
 ## Known Issues
 

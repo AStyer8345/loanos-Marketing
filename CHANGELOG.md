@@ -4,6 +4,51 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-04-07 — Moved from CONTEXT.md
+
+### Shipped (2026-04-05)
+
+- **Homepage v1** — TopNav (Codex), WaitlistForm (Claude), page.tsx with 12 sections (Claude), FAQ content (subagent)
+- **Homepage v2 (de-AI pass)** — 7 new components replacing repeating patterns:
+  - `HeroTerminal` (animated log stream, replaces fake browser chrome)
+  - `BentoFeatures` (asymmetric 5-card grid with bar chart, replaces 4 identical numbered cards)
+  - `ProblemQuotes` (3 big-number callouts, replaces `→` arrow columns)
+  - `FeatureTabs` (client tabbed showcase, replaces 4 alternating fake-browser rows — each tab has a distinct tactical placeholder)
+  - `IntegrationsMarquee` (infinite CSS scroll, replaces plain text row)
+  - `FAQAccordion` (client accordion with smooth height animation, replaces `<details>`+ rotate)
+  - `FinalCTA` (grid-pattern bg with radial fade, replaces flat primary/5 wash)
+- Stripped repeating mono-gold eyebrow labels from 5 of 9 sections to break the visible pattern
+- Build passing, deployed via `git push`
+
+### Shipped (2026-04-05, cont'd — security + briefing + AI expansion)
+
+- **SecuritySection** (`src/components/SecuritySection.tsx`) — 6 trust pillars in 3-col grid
+- **BriefingShowcase** (`src/components/BriefingShowcase.tsx`) — Daily briefing mock with stats strip, priority alerts, voice guide callout
+- **ChatShowcase expanded** — 3 new exchange cards (6 total): email drafting, sales coaching, mass pipeline update
+- **CommsMock expanded** — party actions strip
+- **PipelineMock expanded** — document upload indicators (K/L/CD badges)
+- **RealtorMock expanded** — referral pipeline section with 4 realtors
+
+### Shipped (2026-04-05, cont'd — responsive fixes + content expansion)
+
+- **Mobile responsive overhaul** — fixed horizontal overflow on portrait and landscape phones
+- **ChatShowcase rewritten** — CTC email → cold borrower follow-up; sales coaching → correct low-appraisal framework
+- **CommsMock** — replaced generic CTC email with real CD email format
+- **SocialShowcase** — added 4-card format grid + platform-specific callout strip
+- **BriefingShowcase** — expanded with compliance callout card
+- **Voice guide updates** — low-appraisal coaching, content format strategy, compliance guardrails
+
+### Shipped (2026-04-05, cont'd — adversarial review fixes)
+
+- **False security claims removed** — replaced with accurate middleware + SQL injection prevention language
+- **Drip Campaigns marked "Coming Soon"** — KB says schema-only
+- **PII screenshots deleted** — 6 unreferenced screenshots removed
+- **Mass update card replaced** — now shows lender product matching (live feature)
+- **TopNav duplicate removed** — just Features/About/Contact
+- **robots.txt + sitemap.xml added**
+- **Waitlist API rate-limited** — 5 req/IP/60s
+- **WaitlistForm placeholder** changed to "Jane Smith"
+
 ## 2026-04-05 — Adversarial review fixes
 
 ### Fixed
