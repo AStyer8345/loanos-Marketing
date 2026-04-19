@@ -179,7 +179,7 @@ export default function HomePage() {
                   An assistant <span className="text-primary">trained for LOs.</span>
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  Not a generic chatbot. Draft emails and texts in your voice. Get coached through a tough borrower call. Run income calcs, look up guidelines, blast a rate drop to every realtor with an active deal — or ask it to build you a marketing plan for Q2. It knows your lender panel, your pipeline, and your voice.
+                  Not a generic chatbot. Draft emails and texts in your voice. Get coached through a tough borrower call. Run income calcs, look up guidelines, pull a deal summary for any file in your pipeline — or ask it to build you a marketing plan for Q2. It knows your lender panel, your pipeline, and your voice.
                 </p>
               </div>
               <div className="hidden max-w-xs text-sm text-muted-foreground md:block">

@@ -1,6 +1,6 @@
 # LoanOS System Knowledge Base
 > Master reference for all AI agents, research sessions, and build sessions.
-> Updated: 2026-04-05 (marketing verification pass — features audited against loanos-clone source)
+> Updated: 2026-04-19 (accuracy pass — fixed false chat/briefing claims; CSP/HSTS done; drip UI exists with Coming Soon)
 > Source of truth: CONTEXT.md (session history) + this file (architectural constants)
 
 > **Marketing rule:** Any claim on loanos-marketing must match a ✅ LIVE row in the "Feature Reality Map" below. Aspirational features (🟡 SCHEMA-ONLY / 🔴 NOT BUILT) are NOT marketable until promoted.
@@ -84,14 +84,16 @@ Every marketing claim must map to a ✅ row. Verified by direct source inspectio
 - **Rate limiting** on public API routes
 - **SQL injection prevention** via Supabase parameterized client — no raw SQL
 - **No shared data between orgs** — architecturally impossible via RLS
-- **Known gaps (do NOT market):** No CSP, no HSTS, no CSRF tokens, no IP allowlists
+- **CSP added** (2026-04-05) — `default-src 'self'`; `connect-src` scoped to Supabase + Vercel analytics; still carries `unsafe-inline` in script-src pending nonce rollout
+- **HSTS added** (2026-04-05) — `max-age=63072000; includeSubDomains; preload`
+- **Known gaps (do NOT market):** No CSRF tokens, no IP allowlists
 
 ### 🟡 SCHEMA ONLY — Aspirational, DO NOT MARKET
 
 #### Drip Campaigns
-- **Schema:** `supabase/migrations/071_drip_campaigns_tables.sql` exists
-- **Missing:** No API routes, no UI, no scheduler, no sender
-- **Verdict:** Cut from marketing until real. No "smart drips" copy.
+- **Schema + UI tab:** Schema exists; `/dashboard/drip-campaigns` tab exists with "Coming Soon" banner
+- **Missing:** No scheduler, no sender — campaigns moving to Workflow DevKit post-Task 23 cutover
+- **Verdict:** Market as "Coming Soon" with the tab badge already in FeatureTabs. No "active drip" copy until WDK cutover ships.
 
 #### Encompass / Google Calendar / Calendly integrations
 - **Status:** Schema references or placeholder columns only, no working sync

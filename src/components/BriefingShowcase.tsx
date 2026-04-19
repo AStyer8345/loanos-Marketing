@@ -94,7 +94,7 @@ export default function BriefingShowcase() {
         {/* Footer */}
         <div className="border-t border-[var(--border)] bg-[var(--surface)] px-4 py-2">
           <span className="font-mono text-[9px] text-muted-foreground/60">
-            Generated from your live pipeline · delivered to your inbox and dashboard every morning
+            Generated from your live pipeline · displayed on your dashboard every morning
           </span>
         </div>
       </div>
