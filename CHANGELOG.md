@@ -9,6 +9,7 @@ All notable changes to the LoanOS marketing site.
 ### Changed
 
 - `src/app/page.tsx`: Replaced the pitch-heavy v2 homepage with a quieter product tour: product-first hero, "what is already built" proof grid, captioned screenshot sections, shorter founder note, integrations, and security.
+- Restored the substantive LO assistant and social/voice learning sections from v2 so the page still shows the mortgage-specific AI layer and edit-learning loop.
 - `src/components/TopNav.tsx`: Simplified nav around System, Product, About, and Security.
 - `public/screenshots/tour-*.png`: Added five demo screenshots from LoanOS Clone: dashboard, pipeline, loan file, borrower scenario share page, and n8n automation workflow.
 - Verification: `npm run build` passes. In-app browser checked at `http://localhost:3000/`.

@@ -6,7 +6,7 @@
 
 - **Repo created:** 2026-03-26 (Next.js 14 scaffold + Supabase dep)
 - **Deployed:** Vercel (auto-deploy on `main`)
-- **Status:** Homepage v3 product-proof pass completed 2026-05-01 — less salesy, screenshot-led, focused on what is built and why it is substantive. Local build green; deploy verification pending push.
+- **Status:** Homepage v3 product-proof pass completed 2026-05-01 — less salesy, screenshot-led, focused on what is built and why it is substantive. The LO assistant and social/voice learning sections remain on the page. Local build green; deploy verification pending push.
 - **Demo data:** Supabase demo org (`eeeeeeee-...`) screenshot-ready as of 2026-04-17 in loanos-clone. Five demo screenshots are now live in `public/screenshots/tour-*.png`.
 - **Waitlist API:** `src/app/api/waitlist/route.ts` — functional, writes to Supabase
 

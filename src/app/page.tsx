@@ -2,6 +2,8 @@ import Image from 'next/image'
 import TopNav from '@/components/TopNav'
 import IntegrationsMarquee from '@/components/IntegrationsMarquee'
 import SecuritySection from '@/components/SecuritySection'
+import ChatShowcase from '@/components/ChatShowcase'
+import SocialShowcase from '@/components/SocialShowcase'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // LoanOS Marketing Homepage — v3 (product tour, not a pitch)
@@ -235,6 +237,45 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ══ LO ASSISTANT ══════════════════════════════════════════════════ */}
+        <section id="assistant" className="border-b border-[var(--border)] bg-[var(--surface2)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+                  An assistant <span className="text-primary">trained for LOs.</span>
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  Not a generic chatbot. Draft emails and texts in your voice. Get coached through a tough borrower call. Run income calcs, look up guidelines, pull a deal summary for any file in your pipeline — or ask it to build you a marketing plan for Q2. It knows your lender panel, your pipeline, and your voice.
+                </p>
+              </div>
+              <div className="hidden max-w-xs text-sm text-muted-foreground md:block">
+                Built on Claude, wired into your real data. Write emails, drop texts, explain situations, coach you through objections, run scenarios — all from one conversation.
+              </div>
+            </div>
+
+            <ChatShowcase />
+          </div>
+        </section>
+
+        {/* ══ SOCIAL + VOICE LOOP ═══════════════════════════════════════════ */}
+        <section id="voice" className="border-b border-[var(--border)] bg-[var(--surface2)]">
+          <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+            <div className="mb-12 max-w-2xl">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+                Writes in your voice.
+                <br />
+                <span className="text-primary">Learns from every edit.</span>
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Reels, carousels, single-image posts, text-only posts — every format, written for each platform based on what content actually performs there. One prompt becomes 3-4 platform-specific posts. Every edit you make feeds the next draft.
+              </p>
+            </div>
+
+            <SocialShowcase />
           </div>
         </section>
 

@@ -1,4 +1,4 @@
-type NavKey = 'system' | 'tour' | 'about' | 'security'
+type NavKey = 'system' | 'tour' | 'assistant' | 'voice' | 'about' | 'security'
 
 type TopNavProps = {
   activeSection?: NavKey
@@ -7,6 +7,8 @@ type TopNavProps = {
 const NAV_ITEMS: { label: string; href: string; key: NavKey }[] = [
   { label: 'System', href: '#system', key: 'system' },
   { label: 'Product', href: '#tour', key: 'tour' },
+  { label: 'Assistant', href: '#assistant', key: 'assistant' },
+  { label: 'Voice', href: '#voice', key: 'voice' },
   { label: 'About', href: '#about', key: 'about' },
   { label: 'Security', href: '#security', key: 'security' },
 ]
