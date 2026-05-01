@@ -1,13 +1,14 @@
-type NavKey = 'features' | 'about' | 'contact'
+type NavKey = 'system' | 'tour' | 'about' | 'security'
 
 type TopNavProps = {
   activeSection?: NavKey
 }
 
 const NAV_ITEMS: { label: string; href: string; key: NavKey }[] = [
-  { label: 'Features', href: '#features', key: 'features' },
+  { label: 'System', href: '#system', key: 'system' },
+  { label: 'Product', href: '#tour', key: 'tour' },
   { label: 'About', href: '#about', key: 'about' },
-  { label: 'Contact', href: '#contact', key: 'contact' },
+  { label: 'Security', href: '#security', key: 'security' },
 ]
 
 export default function TopNav({ activeSection }: TopNavProps) {
@@ -45,20 +46,9 @@ export default function TopNav({ activeSection }: TopNavProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://calendly.com/adamstyer/15minutes"
-            target="_blank"
-            rel="noopener"
-            className="inline-flex items-center rounded-md border border-input px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
-            Book a demo
-          </a>
-          <a
-            href="#waitlist"
-            className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:opacity-90"
-          >
-            Join the waitlist
-          </a>
+          <span className="hidden font-mono text-[11px] uppercase tracking-wider text-muted-foreground md:inline">
+            Product tour · May 1, 2026
+          </span>
         </div>
       </div>
     </header>

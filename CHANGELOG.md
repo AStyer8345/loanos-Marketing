@@ -4,6 +4,25 @@ All notable changes to the LoanOS marketing site.
 
 ## [Unreleased]
 
+## 2026-05-01 — Product-proof homepage with real screenshots
+
+### Changed
+
+- `src/app/page.tsx`: Replaced the pitch-heavy v2 homepage with a quieter product tour: product-first hero, "what is already built" proof grid, captioned screenshot sections, shorter founder note, integrations, and security.
+- `src/components/TopNav.tsx`: Simplified nav around System, Product, About, and Security.
+- `public/screenshots/tour-*.png`: Added five demo screenshots from LoanOS Clone: dashboard, pipeline, loan file, borrower scenario share page, and n8n automation workflow.
+- Verification: `npm run build` passes. In-app browser checked at `http://localhost:3000/`.
+
+## 2026-04-19 — Autonomous: copy accuracy pass
+
+### Changed
+
+- `src/app/page.tsx`: Removed false "blast a rate drop to every realtor" from chat section description — KB marks mass comms via chat as NOT BUILT. Replaced with accurate "pull a deal summary for any file in your pipeline".
+- `src/components/BriefingShowcase.tsx`: Removed "delivered to your inbox every morning" from briefing footer — no automated daily briefing email exists in n8n. Changed to "displayed on your dashboard every morning".
+- `LOANOS_SYSTEM_KNOWLEDGE_BASE.md`: Updated security posture (CSP + HSTS now live, removed from Known Gaps); updated Drip Campaigns (UI tab + Coming Soon banner now noted); `Updated:` date → 2026-04-19.
+- `CONTEXT.md`: Updated to reflect current status.
+- Commit `998eb26`, Vercel `dpl_2mVEsEy5c6oFET9urx8uRGEe72jM` → READY.
+
 ## 2026-04-07 — Moved from CONTEXT.md
 
 ### Shipped (2026-04-05)

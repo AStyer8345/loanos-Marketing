@@ -1,17 +1,18 @@
 # LoanOS Marketing — Session Context
 
-**Last updated:** 2026-04-05
+**Last updated:** 2026-05-01
 
 ## Current State
 
 - **Repo created:** 2026-03-26 (Next.js 14 scaffold + Supabase dep)
 - **Deployed:** Vercel (auto-deploy on `main`)
-- **Status:** Homepage v2 shipped 2026-04-05 (de-AI design pass — 7 distinct components replacing uniform sections).
+- **Status:** Homepage v3 product-proof pass completed 2026-05-01 — less salesy, screenshot-led, focused on what is built and why it is substantive. Local build green; deploy verification pending push.
+- **Demo data:** Supabase demo org (`eeeeeeee-...`) screenshot-ready as of 2026-04-17 in loanos-clone. Five demo screenshots are now live in `public/screenshots/tour-*.png`.
 - **Waitlist API:** `src/app/api/waitlist/route.ts` — functional, writes to Supabase
 
 ## What Exists
 
-- `src/app/page.tsx` — landing page with 7 sections (nav, hero, problem, features, social-proof, waitlist, footer). Semantic HTML only, `id`s everywhere, zero Tailwind classes. Ready to be skinned.
+- `src/app/page.tsx` — homepage v3 product tour: hero screenshot, live-feature proof grid, five captioned screenshots, founder note, integrations, security, footer.
 - `src/app/layout.tsx` — SEO metadata only, no fonts or providers yet.
 - `src/app/globals.css` — **as of 2026-04-05:** full LoanOS design token system ported from loanos-clone (light/dark CSS vars, card-glow, lo-table styles).
 - `tailwind.config.ts` — **as of 2026-04-05:** mirrored from loanos-clone (IBM Plex + Bebas Neue fonts, color tokens aliased to CSS vars, safelist for dynamic classes).
@@ -72,13 +73,14 @@ This is the "why" behind LoanOS. Every piece of marketing copy should lean into 
 
 ## Next Steps
 
-1. **Build demo user with synthetic data in loanos-clone** — then swap placeholder screenshots on marketing homepage for real UI
-2. **Generate Gemini headshot** (backwards hat, casual) — swap into `/about` section placeholder
-3. **First 3 real testimonials** once beta users land — enable a testimonial carousel section (structure not yet built, intentionally)
-4. **Launch post-May-1 pivot:** replace "Join the waitlist" primary CTA with "Start free trial" once product is live, add `/pricing` page with tiers from research
-5. **Contact form backend:** current Contact section uses `mailto:` fallback. Post-launch, replace with `/api/contact` route + Supabase `contact_inquiries` table.
+1. **Deploy homepage v3** — push to `main`, then verify Vercel reaches `READY`.
+2. **Generate Gemini headshot** (backwards hat, casual) — swap into `/about` section placeholder.
+3. **First 3 real testimonials** once beta users land — enable a testimonial carousel section (structure not yet built, intentionally).
+4. **Launch post-May-1 pivot:** decide whether to add a demo/pricing/contact path now that the homepage is intentionally less salesy.
+5. **Contact form backend:** if CTAs return, replace `mailto:` fallback with `/api/contact` route + Supabase `contact_inquiries` table.
 
 ## Known Issues
 
 - No `.env.local` present locally — Supabase waitlist submissions will fail in dev until env vars are set
 - `next.config.ts` deleted (was duplicate of `next.config.mjs`) — consolidated to `.mjs` only
+- Local npm 11 rewrote `package-lock.json` during dependency repair; do not stage unless intentionally normalizing the lockfile.
